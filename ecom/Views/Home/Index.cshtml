@@ -1,13 +1,88 @@
-﻿@{
+﻿@model IEnumerable<ecom.Models.Product>
+@using ecom.Models
+
+@{
     ViewData["Title"] = "Aukcije BiH - početna";
+    //var data = Model.GroupBy(c => c.Category);
+    //List<Category> categories = new List<Category>();
+    //foreach(var item in data)
+    //{
+      //  categories.Add(item.Key);
+    //}
 }
+
+<style>
+    .card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+    .card:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    a{
+        text-decoration: none;
+    }
+</style>
 
 <div class="text-center">
     <h1 class="display-4">Dobro došli na Aukcije BiH!</h1>
 </div>
 
-<div>
-    <a asp-controller="predmeti" asp-action="Index" asp-route-category="Kolekcionarstvo">Kolekcionarstvo</a>
-    <a asp-controller="predmeti" asp-action="Index" asp-route-category="Numizmatika">Numizmatika</a>
-    <a asp-controller="predmeti" asp-action="Index" asp-route-category="Antikviteti">Antikviteti</a>
+<div class="row col-md-10" style="padding-left: 15px;">
+    <div class="row col-md-12" style="padding: 15px;">
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Kolekcionarstvo">Kolekcionarstvo</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Numizmatika">Numizmatika</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Antikviteti">Antikviteti</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Umjetnost">Umjetnost</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Knjige i tisak">Knjige</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Glazba i film">Glazba i film</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Audio / video">Audio / video</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Računala i mobiteli">Računala i mobiteli</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Konzole i igrice">Konzole i igrice</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Odjeća i obuća">Odjeća i obuća</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Modni dodaci">Modni dodaci</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Nakit i satovi">Nakit i satovi</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Ljepota i zdravlje">Ljepota i zdravlje</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Dom i vrt">Dom i vrt</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Sport i oprema">Sport i oprema</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Igre i igračke">Igre i igračke</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Škola i posao">Škola i posao</a>
+            </div>
+            <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+                <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="Ostalo">Ostalo</a>
+            </div>
+    </div>
 </div>

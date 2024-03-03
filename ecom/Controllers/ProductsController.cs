@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ecom.Models;
+using ecom.Data;
 
 namespace ecom.Controllers
 {
@@ -21,19 +22,19 @@ namespace ecom.Controllers
 
         // GET: Products (by category)
         [Route("{category?}/{subcategory?}")]
-        public async Task<IActionResult> Index(Category? category, SubCategory? subcategory)
+        public async Task<IActionResult> Index(string? category, string? subcategory)
         {
             if(category == null && subcategory == null)
             {
-                return View(await _context.Product.ToListAsync());
+                return View(await _context.Products.ToListAsync());
             }
             if(subcategory == null)
             {
-                return View(await _context.Product.Where(c => c.CategoryId == category).ToListAsync());
+                return View(await _context.Products.Where(c => c.Category.Name == category).ToListAsync());
             }
             else
             {
-                return View(await _context.Product.Where(c => c.CategoryId == category && c.SubCategoryId == subcategory).ToListAsync());
+                return View(await _context.Products.Where(c => c.Category.Name == category && c.SubCategory.Name == subcategory).ToListAsync());
             }
         }
 
@@ -46,7 +47,7 @@ namespace ecom.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -80,7 +81,7 @@ namespace ecom.Controllers
                 product.IsSold = false;
                 product.SellerId = 0;
                 product.BuyerId = 0;
-                product.HeadImageUrl = "";
+                product.ImagesUrl = "";
                 product.IsSeeded = false;
                 product.CurrentPrice = 0;
                 //product.SellerId = User.userid; headimageurl isseeded currentprice
@@ -108,7 +109,7 @@ namespace ecom.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -160,7 +161,7 @@ namespace ecom.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var product = await _context.Products
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -175,10 +176,10 @@ namespace ecom.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Product.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
-                _context.Product.Remove(product);
+                _context.Products.Remove(product);
             }
 
             await _context.SaveChangesAsync();
@@ -187,7 +188,7 @@ namespace ecom.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Product.Any(e => e.Id == id);
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }
