@@ -11,4 +11,6 @@ public class Category
     public required string Keywords { get; set; }
     [Display(Name = "Napomene")]
     public required string Note { get; set; }
+    [Display(Name = "Kategorija")]
+    public required string DisplayName { get; set;}
 }

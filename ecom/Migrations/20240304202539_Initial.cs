@@ -70,7 +70,8 @@ namespace ecom.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Note = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,7 +102,8 @@ namespace ecom.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParentCategoryId = table.Column<int>(type: "int", nullable: false)
+                    ParentCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DisplayName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -233,6 +235,7 @@ namespace ecom.Migrations
                     SubCategoryId = table.Column<int>(type: "int", nullable: false),
                     ImagesUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsSold = table.Column<bool>(type: "bit", nullable: false),
+                    TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsNew = table.Column<bool>(type: "bit", nullable: false),
                     IsSeeded = table.Column<bool>(type: "bit", nullable: false),
                     IsHighlighted = table.Column<bool>(type: "bit", nullable: false),

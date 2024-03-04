@@ -22,19 +22,19 @@ namespace ecom.Controllers
 
         // GET: Products (by category)
         [Route("{category?}/{subcategory?}")]
-        public async Task<IActionResult> Index(string? category, string? subcategory)
+        public async Task<IActionResult> Index(string category, string? subcategory)
         {
-            if(category == null && subcategory == null)
-            {
-                return View(await _context.Products.ToListAsync());
-            }
             if(subcategory == null)
             {
-                return View(await _context.Products.Where(c => c.Category.Name == category).ToListAsync());
+                ViewData["Category"] = await _context.Categories.Where(c => c.Name == category).FirstOrDefaultAsync();
+                ViewData["Subcategories"] = await _context.SubCategories.Where(c => c.ParentCategoryName == category).ToListAsync();
+                return View(await _context.Products.Where(c => c.Category.Name == category && c.AuctionStart < DateTime.Now && c.AuctionEnd > DateTime.Now).ToListAsync());
             }
             else
             {
-                return View(await _context.Products.Where(c => c.Category.Name == category && c.SubCategory.Name == subcategory).ToListAsync());
+                ViewData["Category"] = await _context.Categories.Where(c => c.Name == category).FirstOrDefaultAsync();;
+                ViewData["Subcategory"] = await _context.SubCategories.Where(c => c.Name == subcategory).FirstOrDefaultAsync();;
+                return View(await _context.Products.Where(c => c.Category.Name == category && c.SubCategory.Name == subcategory && c.AuctionStart < DateTime.Now && c.AuctionEnd > DateTime.Now).ToListAsync());
             }
         }
 

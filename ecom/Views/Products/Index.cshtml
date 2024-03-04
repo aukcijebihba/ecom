@@ -1,58 +1,60 @@
 @model IEnumerable<ecom.Models.Product>
 
 @{
-    var cat = @Model.FirstOrDefault()?.Category.Id;
-    var sub = @Model.FirstOrDefault()?.SubCategory.Id;
+    var cat = (Category?)ViewData["Category"];
+    var subcategories = (List<SubCategory>?)ViewData["Subcategories"];
+    
+    var head = new object();
+    ViewData["Title"] = cat?.DisplayName + " - Aukcije BiH";
+    if(ViewData["Subcategory"] != null)
+    {
+        var sub = (SubCategory?)ViewData["Subcategory"];
+        ViewData["Title"] = sub?.DisplayName + " - Aukcije BiH";
+        head = sub?.DisplayName;
+    }
+    else
+    {
+        head = cat?.DisplayName;
+    }
     var cnt = @Model.Count();
-    ViewData["Title"] = "Predmeti " + cat;
 }
 
-<h4>Predmeti @cat</h4>
+<style>
+    .card{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+    .card:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    a{
+        text-decoration: none;
+    }
+</style>
+
+<h4>Predmeti - @head</h4>
 
 <p>
     <a asp-action="Create">Create New, count: @cnt</a>
 </p>
 
-@if(cat == 0)
+@if(subcategories != null)
 {
-    <div>
-        <a asp-controller="predmeti" asp-action="Index" asp-route-category="@cat" asp-route-subcategory="Militarija">Militarija</a>
-        <a asp-controller="predmeti" asp-action="Index" asp-route-category="@cat" asp-route-subcategory="Filatelija">Filatelija</a>
-        <a asp-controller="predmeti" asp-action="Index" asp-route-category="@cat" asp-route-subcategory="Filumenija">Filumenija</a>
+    <div class="row col-md-12" style="padding: 15px;">
+    @foreach(var item in subcategories)
+    {
+        <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+            <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="@item.ParentCategoryName" asp-route-subcategory="@item.Name">@item.DisplayName</a>
+        </div>
+    }
     </div>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubCategory)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SubCategory)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="row col-md-12" style="padding: 15px;">
+    @foreach(var product in Model)
+    {
+        <div class="card col-md-5" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
+            <a asp-controller="Products" asp-action="Details" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-route-id="@product.Id">@product.Name</a>
+        </div>
+    }
+</div>

@@ -2,25 +2,6 @@ using System;
 using System.ComponentModel.DataAnnotations;
 namespace ecom.Models;
 
-/* public enum SubCategories
-{   //Kolekcionarstvo
-    Militarija, Filatelija, Filumenija, Razglednice, Privjesci, Suveniri, Figurice, Ulaznice, TelKarte, Slicice, Pehari, Tablice, Salvete, Zastave, Maketarstvo, Autici, Ostalo,
-    Kovanice, Novcanice, Lotovi, OstaloNumizmatika, //Numizmatika
-    KeramikaPorculanStaklo, StNamjestaj, GramofoniPloce, StUredaji, StPriborOprema, StOdjecaObuca, StNakitSatovi, StKnjigeDokumenti, OstaliAntikviteti, //antikv
-    Slike, Fotografije, Ikone, Skulpture, OstalaUmjetnost, //Umjetnost
-    Knjizevnost, ZnanostEnciklopedije, MagaziniCasopisi, Stripovi, AtlasiZemljovidi, ZaDjecu, OstaloTisak, //Knjige
-    CDKazeteVinil, Instrumenti, OstaloGlazba, DVD, BluRay, VhsOstalo, //Glazba i film
-    TV, RadioTelefon, LinijeKazetofoni, ZvucniciPojacala, FotoAparatiKamere, Dronovi, KucnoKinoDVDPlayeri, mp3walkmanipod, ostaloAV, //audio video
-    Racunala, Laptopi, Tableti, Mobiteli, Crypto, OpremaPunjaci, //racunala i mobiteli
-    Konzole, VideoIgrice, OpremaDodaci, //Konzole i igrice
-    Kozmetika, Nakit, Satovi, Torbice, Naocale, DragoKamenje, BroseviBedzevi, OstaloLjepota, //ljepota 
-    Odjeca, Obuca, SportOprema, OdjecaZaDjecu, //odjeca i moda
-    DresoviMajice, Posteri, SportskiDodaci, // Sport
-    Namjestaj, BijelaTehnika, AlatiPribor, Zdravlje, KLjubimci, Vozila, OstaloDom, //dom i vrt
-    AkcFigurice, NaBaterije, Plisanci, LegoSlaganje, DrustveneIgre, // igre i igracke
-    Skola, PosaoUred // skola i posao
-} */
-
 public class Product
 {
     public int Id { get; set; } 
@@ -62,6 +43,16 @@ public class Product
             else return true;
         } 
     }
+    public bool IsActive 
+    {
+        get
+        {
+            if(AuctionStart < DateTime.Now && AuctionEnd > DateTime.Now) return true;
+            else return false;
+        }
+    }
+    [Required]
+    public DateTime TimeCreated { get; set; }
     [Required]
     public bool IsNew { get; set; } //novo / polovno
     [Required]
