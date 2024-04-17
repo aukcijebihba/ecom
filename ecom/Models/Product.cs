@@ -29,7 +29,11 @@ public class Product
     public DateTime AuctionStart { get; set; } // aktivni su svi predmeti gdje je trenutno vrijeme između auction start i end
     [Required]
     public DateTime AuctionEnd { get; set; }
-    public required Category Category { get; set; }
+    [Display(Name = "Kategorija")]
+    [Required]
+    public int CategoryId { get; set; }
+    private Category? _category;
+    public Category Category { get  { return _category ??= new Category();} set { _category = value;}}
     public required SubCategory SubCategory { get; set; }
     [Required]
     public required string ImagesUrl { get; set; }

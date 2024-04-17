@@ -12,7 +12,7 @@ using ecom.Data;
 namespace ecom.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20240304202539_Initial")]
+    [Migration("20240414131642_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -171,19 +171,15 @@ namespace ecom.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("DisplayName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Keywords")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -329,6 +325,9 @@ namespace ecom.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ParentCategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ParentCategoryName")
                         .IsRequired()

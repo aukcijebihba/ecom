@@ -1,16 +1,16 @@
 @model ecom.Models.Product
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Kreiraj";
 }
 
-<h1>Create me</h1>
+<h1>Kreiraj proizvod</h1>
 
-<h4>Product</h4>
+<h4>Proizvod</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-controller="predmeti" asp-action="dodavanje" id="frm" name="frm" enctype="multipart/form-data"> 
+        <form asp-action="Create" enctype="multipart/form-data"> 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -38,14 +38,18 @@
                 <span asp-validation-for="AuctionEnd" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
+                <label asp-for="Category"></label>
+                <select asp-for="CategoryId" aria-label="Category" onchange="getme(this.value)"  class="form-control" asp-items="@ViewBag.Categories">
+                        <option value="">--Izaberi kategoriju--</option>
+                    </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SubCategory" class="control-label"></label>
-                <input asp-for="SubCategory" class="form-control" />
-                <span asp-validation-for="SubCategory" class="text-danger"></span>
+                <select asp-for="SubCategory.Id" id="droplist" name="category" asp-items="@ViewBag.SubCategories[1]" class="form-control">
+                    <option value="">--Izaberi potkategoriju--</option>
+                </select>
+                <span asp-validation-for="SubCategory.Id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IsNew" class="control-label"></label>
@@ -72,7 +76,7 @@
                 <input type="checkbox" value="true" asp-for="IsEndTimeAdjusted"/>
             </div>
             <div class="form-group">
-                <input type="button" onclick="getme()" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Kreiraj" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -87,9 +91,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
 
 <script>
-    function getme()
+    function getme(val)
      {
-        $("#frm").submit();
+        var i, L = document.getElementById('droplist').options.length - 1;
+        for(i = L; i >= 1; i--)
+        {
+            document.getElementById('droplist').remove(i);
+        }
+        for(i = 1 ; i <= L; i++)
+        {
+            var option = document.createElement('option');
+            option.text = val;
+            document.getElementById('droplist').add(option);
+        }
      }
 </script>
 @* 

@@ -7,10 +7,10 @@ public class Category
 {
     public int Id { get; set; }
     [Display(Name = "Naziv")]
-    public required string Name { get; set; }
-    public required string Keywords { get; set; }
+    public string? Name { get; set; }
+    public string? Keywords { get; set; }
     [Display(Name = "Napomene")]
-    public required string Note { get; set; }
+    public string? Note { get; set; }
     [Display(Name = "Kategorija")]
-    public required string DisplayName { get; set;}
+    public string? DisplayName { get; set;}
 }

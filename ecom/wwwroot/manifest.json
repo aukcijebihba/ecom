@@ -1,0 +1,17 @@
+{
+    "short_name": "aukcije-bih.ba",
+    "name": "Aukcije-bih.ba - Izbori se za svoju cijenu.",
+    "icons": [
+      {
+        "src": "/logo-final.png",
+        "type": "image/png",
+        "sizes": "2091x850"
+      }
+    ],
+    "start_url": "/?source=pwa",
+    "background_color": "#e9ebf8",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#e9ebf8",
+    "description": "Prva web aplikacija za aukcije na području Bosne i Hercegovine."
+  }

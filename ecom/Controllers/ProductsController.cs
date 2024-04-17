@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ecom.Models;
 using ecom.Data;
+using System.Configuration;
 
 namespace ecom.Controllers
 {
@@ -54,6 +55,7 @@ namespace ecom.Controllers
                 return NotFound();
             }
 
+            product.ViewCount++; //additional logic might be needed
             return View(product);
         }
 
@@ -61,7 +63,27 @@ namespace ecom.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            PopulateCategories();
+            PopulateSubCategories(); // to be changed?
             return View();
+        }
+
+        private void PopulateCategories()
+        {
+            var categories = _context.Categories.ToList();
+            ViewBag.Categories = new SelectList(categories, "Id", "DisplayName", null);
+        }
+
+        private void PopulateSubCategories()
+        {
+            List<SubCategory> subs = _context.SubCategories.ToList();
+            int i = 1;
+            foreach(var item in _context.Categories.ToList())
+            {
+                //var subs = _context.
+                ViewBag.SubCategories = new SelectList(subs.Where(c => c.ParentCategoryId == item.Id), "Id", "DisplayName", null);
+                i++;
+            }
         }
 
         // POST: Products/Create
@@ -71,19 +93,23 @@ namespace ecom.Controllers
         [Route("dodavanje")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-        [Bind("Name,StartingPrice,Description,AuctionStart,AuctionEnd,CategoryId,SubCategoryId,IsNew,IsHighlighted,IsAdvertised,HasExtraPictures,IsStartTimeAdjusted,IsEndTimeAdjusted")] 
+        [Bind("Name,StartingPrice,Description,AuctionStart,AuctionEnd,CategoryId,SubCategoryId,IsNew,IsHighlighted,IsAdvertised,HasExtraPictures,"+
+        "IsStartTimeAdjusted,IsEndTimeAdjusted")] 
         Product product)
         {
             /* if (ModelState.IsValid)
             { */
             try{
                 product.OfferCount = 0;
+                product.CurrentPrice = product.StartingPrice;
                 product.IsSold = false;
+                product.TimeCreated = DateTime.Now;
                 product.SellerId = 0;
-                product.BuyerId = 0;
+                product.BuyerId = 0; //usermanager.getcurrentuser
                 product.ImagesUrl = "";
+                product.ViewCount = 0;
+                product.FollowerCount = 0;
                 product.IsSeeded = false;
-                product.CurrentPrice = 0;
                 //product.SellerId = User.userid; headimageurl isseeded currentprice
                 _context.Add(product);
                 await _context.SaveChangesAsync();
