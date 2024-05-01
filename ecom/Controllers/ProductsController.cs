@@ -12,7 +12,7 @@ using System.Text.Json;
 
 namespace ecom.Controllers
 {
-    [Route("predmeti")]
+    //[Route("predmeti")]
     public class ProductsController : Controller
     {
         private readonly ProductContext _context;
@@ -23,7 +23,7 @@ namespace ecom.Controllers
         }
 
         // GET: Products (by category)
-        [Route("{category?}/{subcategory?}")]
+        //[Route("{category?}/{subcategory?}")]
         public async Task<IActionResult> Index(string category, string? subcategory)
         {
             if(subcategory == null)
@@ -40,7 +40,7 @@ namespace ecom.Controllers
             }
         }
 
-        [Route("detalji/{id?}")]
+        //[Route("detalji/{id?}")]
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -60,15 +60,14 @@ namespace ecom.Controllers
             return View(product);
         }
 
-        [Route("dodavanje")]
+        //[Route("dodavanje")]
         // GET: Products/Create
         public IActionResult Create()
         {
             string host = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/";
             ViewData["baseurl"] = host;
             PopulateCategories();
-            var cats = GetSubCategories("1");
-            //PopulateSubCategories(); // to be changed?
+            var sub = GetSubCategories("1");
             return View();
         }
 
@@ -84,6 +83,7 @@ namespace ecom.Controllers
             ViewData["SubCategories"] = new SelectList(subs, "Id", "DisplayName", null);
         }
 
+        //[Route("GetSubCategories/{categoryId}")]
         [HttpPost, ActionName("GetSubCategories")]
         public JsonResult GetSubCategories(string categoryId)
         {
@@ -94,19 +94,14 @@ namespace ecom.Controllers
                 catId = Convert.ToInt32(categoryId);
                 subs = _context.SubCategories.Where(s => s.CategoryId.Equals(catId)).ToList();
             }
-            Dictionary<string, string> subCategories = new Dictionary<string, string>();
-            foreach(var item in subs)
-            {
-                subCategories.Add(item.Id.ToString(), item.Name);
-            }
-            return Json(subCategories);
+            return Json(subs);
         }
 
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Route("dodavanje")]
+        //[Route("dodavanje")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
         [Bind("Name,StartingPrice,Description,AuctionStart,AuctionEnd,CategoryId,SubCategoryId,IsNew,IsHighlighted,IsAdvertised,HasExtraPictures,"+
@@ -142,7 +137,7 @@ namespace ecom.Controllers
             return View(product);
         }
 
-        [Route("izmjena/{id?}")]
+        //[Route("izmjena/{id?}")]
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -195,7 +190,7 @@ namespace ecom.Controllers
         }
 
         // GET: Products/Delete/5
-        [Route("brisanje/{id?}")]
+        //[Route("brisanje/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
