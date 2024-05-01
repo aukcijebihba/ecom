@@ -1,8 +1,40 @@
 @model ecom.Models.Product
+@inject IJsonHelper Json
 
 @{
     ViewData["Title"] = "Kreiraj";
+    var baseurl = ViewData["baseurl"];
 }
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var a = 0;
+    });
+
+    function loadSubs(obj) {            
+        var value = obj.value;
+        var url = "@baseurl";
+        
+        var ph = [{"Id" : "1", "Name" : "Militarija"},{"Id" : "2", "Name" : "Filatelija"}];
+        $.post(url + "predmeti/GetSubCategories", { categoryId: value }, function (data) {
+            debugger;
+            PopulateDropDown("#ddlSubCategoryId", data);
+        });
+    }
+
+    function PopulateDropDown(dropDownId, list, selectedId) {
+        $(dropDownId).empty();
+        $(dropDownId).append("<option>--Please Product--</option>");
+        $.each(list, function (index, row) {
+            $(dropDownId).append("<option value='" + row.Id + "'>" + row.Name + "</option>")
+        });
+    }
+</script>
+
 
 <h1>Kreiraj proizvod</h1>
 
@@ -39,17 +71,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="Category"></label>
-                <select asp-for="CategoryId" aria-label="Category" onchange="getme(this.value)"  class="form-control" asp-items="@ViewBag.Categories">
-                        <option value="">--Izaberi kategoriju--</option>
-                    </select>
+                <select asp-for="CategoryId" id="ddlCategoryId" class="form-control" onchange="loadSubs(this)" asp-items="ViewBag.Categories">
+                    <option value="">--Izaberi kategoriju--</option>
+                </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SubCategory" class="control-label"></label>
-                <select asp-for="SubCategory.Id" id="droplist" name="category" asp-items="@ViewBag.SubCategories[1]" class="form-control">
+                <select asp-for="SubCategoryId" id="ddlSubCategoryId" asp-items="ViewBag.SubCategories" class="form-control">
                     <option value="">--Izaberi potkategoriju--</option>
                 </select>
-                <span asp-validation-for="SubCategory.Id" class="text-danger"></span>
+                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IsNew" class="control-label"></label>
@@ -86,26 +118,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
-
-<script>
-    function getme(val)
-     {
-        var i, L = document.getElementById('droplist').options.length - 1;
-        for(i = L; i >= 1; i--)
-        {
-            document.getElementById('droplist').remove(i);
-        }
-        for(i = 1 ; i <= L; i++)
-        {
-            var option = document.createElement('option');
-            option.text = val;
-            document.getElementById('droplist').add(option);
-        }
-     }
-</script>
 @* 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

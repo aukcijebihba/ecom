@@ -4,11 +4,168 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 namespace ecom.Data;
 public class ProductContext : IdentityDbContext<Writer, IdentityRole<int>, int>
+{
+    public ProductContext (DbContextOptions<ProductContext> options) : base(options){}
+
+    public DbSet<Product> Products { get; set; } //= default!;
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<SubCategory> SubCategories { get; set; }
+    public DbSet<Message> Messages { get; set; }
+    public DbSet<Writer> Writers { get; set; }
+
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        public ProductContext (DbContextOptions<ProductContext> options) : base(options){}
-        public DbSet<Product> Products { get; set; } //= default!;
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<SubCategory> SubCategories { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<Writer> Writers { get; set; }
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Category>().HasMany(c => c.SubCategories).WithOne(a => a.Category).HasForeignKey(a => a.CategoryId);
+        modelBuilder.Entity<Category>().HasMany(c => c.Products).WithOne(a => a.Category).HasForeignKey(a => a.CategoryId);
+        modelBuilder.Entity<SubCategory>().HasMany(c => c.Products).WithOne(a => a.SubCategory).HasForeignKey(a => a.SubCategoryId);
+        modelBuilder.Entity<Product>().HasOne(c => c.SubCategory).WithMany(c => c.Products).OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Category>().HasData(
+            new Category{Id=1,Name="Kolekcionarstvo",Keywords="kolekcije,kolekcija",DisplayName="Kolekcionarstvo",Note=""},
+            new Category{Id=2,Name="Numizmatika",Keywords="novac",DisplayName="Numizmatika",Note=""},
+            new Category{Id=3,Name="Antikviteti",Keywords="starine",DisplayName="Antikviteti",Note=""},
+            new Category{Id=4,Name="Umjetnost",Keywords="umjetnine",DisplayName="Umjetnost",Note=""},
+            new Category{Id=5,Name="Knjige-tisak",Keywords="",DisplayName="Knjige i tisak",Note=""},
+            new Category{Id=6,Name="Glazba-film",Keywords="",DisplayName="Glazba i film",Note=""},
+            new Category{Id=7,Name="Audio-video",Keywords="multimedija,av tehnika, audio video tehnika, audio i video tehnika,a/v tehnika",DisplayName="Audio / video",Note=""},
+            new Category{Id=8,Name="Racunala-mobiteli",Keywords="",DisplayName="Računala i mobiteli",Note=""},
+            new Category{Id=9,Name="Konzole-igrice",Keywords="igrice",DisplayName="Konzole i igrice",Note=""},
+            new Category{Id=10,Name="Odjeca-obuca",Keywords="",DisplayName="Odjeća i obuća",Note=""},
+            new Category{Id=11,Name="Nakit-satovi",Keywords="",DisplayName="Nakit i satovi",Note=""},
+            new Category{Id=12,Name="Modni-dodaci",Keywords="accessories",DisplayName="Modni dodaci",Note=""},
+            new Category{Id=13,Name="Ljepota-zdravlje",Keywords="",DisplayName="Ljepota i zdravlje",Note=""},
+            new Category{Id=14,Name="Sport-oprema",Keywords="sportska oprema",DisplayName="Sport i oprema",Note=""},
+            new Category{Id=15,Name="Dom-vrt",Keywords="za kuću,za kucu,za dom,kuća,stan,kuca",DisplayName="Dom i vrt",Note=""},
+            new Category{Id=16,Name="Igre-igracke",Keywords="igracke",DisplayName="Igre i igračke",Note=""},
+            new Category{Id=17,Name="Skola-posao",Keywords="",DisplayName="Škola i posao",Note=""},
+            new Category{Id=18,Name="Ostalo",Keywords="",DisplayName="Ostalo",Note="Predmeti koji nemaju posebnu kategoriju."});
+        modelBuilder.Entity<SubCategory>().HasData(
+            new SubCategory{Id=1,Name="Militarija",Keywords="",DisplayName="Militarija",CategoryId=1,ParentCategoryName="Kolekcionarstvo"}, //filumenija, memorabilija?
+            new SubCategory{Id=2,Name="Filatelija",Keywords="",DisplayName="Filatelija",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=3,Name="Figurice",Keywords="figure",DisplayName="Figurice",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=4,Name="Slicice-karte-albumi",Keywords="slicice,kartice,igraće karte,igrace karte",DisplayName="Sličice, karte i albumi",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=5,Name="Razglednice",Keywords="",DisplayName="Razglednice",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=6,Name="Modeli-makete",Keywords="modelarstvo,maketarstvo,autići,autici,modeli auta",DisplayName="Modeli i makete",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=7,Name="Suveniri",Keywords="",DisplayName="Suveniri",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=8,Name="Privjesci",Keywords="privesci,privjesci za ključeve,privjesci za kljuceve",DisplayName="Privjesci",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=9,Name="Ulaznice-karte",Keywords="",DisplayName="Ulaznice i karte",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=10,Name="Telefonske-kartice",Keywords="",DisplayName="Telefonske kartice",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=11,Name="Pehari-medalje",Keywords="trofeji,kolajne",DisplayName="Pehari i medalje",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=12,Name="Registracijske-tablice",Keywords="registracije,registarske tablice",DisplayName="Registracijske tablice",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=13,Name="Zastave",Keywords="zastavice",DisplayName="Zastave",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=14,Name="Salvete",Keywords="salvetice",DisplayName="Salvete",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=15,Name="Lotovi",Keywords="",DisplayName="Lotovi",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=16,Name="Ostalo-kolekcionarstvo",Keywords="",DisplayName="Ostalo - kolekcionarstvo",CategoryId=1,ParentCategoryName="Kolekcionarstvo"},
+            new SubCategory{Id=17,Name="Kovanice",Keywords="novčići,novcici",DisplayName="Kovanice",CategoryId=2,ParentCategoryName="Numizmatika"},
+            new SubCategory{Id=18,Name="Novcanice",Keywords="novcanice",DisplayName="Novčanice",CategoryId=2,ParentCategoryName="Numizmatika"},
+            new SubCategory{Id=19,Name="Bonovi",Keywords="",DisplayName="Bonovi",CategoryId=2,ParentCategoryName="Numizmatika"},
+            new SubCategory{Id=20,Name="Zetoni",Keywords="",DisplayName="Žetoni",CategoryId=2,ParentCategoryName="Numizmatika"},
+            new SubCategory{Id=21,Name="Ostalo-numizmatika",Keywords="",DisplayName="Ostalo - numizmatika",CategoryId=2,ParentCategoryName="Numizmatika"},
+            new SubCategory{Id=22,Name="Keramika-porculan-staklo",Keywords="",DisplayName="Keramika, porculan i staklo",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=23,Name="Stari-namjestaj",Keywords="starinski",DisplayName="Stari namještaj",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=24,Name="Stari-uredaji-aparati",Keywords="",DisplayName="Stari uređaji i aparati",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=25,Name="Stari-pribor-oprema",Keywords="",DisplayName="Stari pribor i oprema",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=26,Name="Stara-odjeca-obuca",Keywords="",DisplayName="Stara odjeća i obuća",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=27,Name="Stari-nakit-satovi",Keywords="starinski nakit",DisplayName="Stari nakit i satovi",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=28,Name="Stare-knjige-dokumenti",Keywords="",DisplayName="Stare knjige i dokumenti",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=29,Name="Ostalo-antikviteti",Keywords="",DisplayName="Ostalo - antikviteti",CategoryId=3,ParentCategoryName="Antikviteti"},
+            new SubCategory{Id=30,Name="Umjetnicke-slike",Keywords="",DisplayName="Umjetničke slike",CategoryId=4,ParentCategoryName="Umjetnost"},
+            new SubCategory{Id=31,Name="Fotografije",Keywords="",DisplayName="Fotografije",CategoryId=4,ParentCategoryName="Umjetnost"},
+            new SubCategory{Id=32,Name="Ikone",Keywords="",DisplayName="Ikone",CategoryId=4,ParentCategoryName="Umjetnost"},
+            new SubCategory{Id=33,Name="Skulpture",Keywords="",DisplayName="Skulpture",CategoryId=4,ParentCategoryName="Umjetnost"},
+            new SubCategory{Id=34,Name="Gobleni",Keywords="",DisplayName="Gobleni",CategoryId=4,ParentCategoryName="Umjetnost"},
+            new SubCategory{Id=35,Name="Ostalo-umjetnost",Keywords="",DisplayName="Ostalo - umjetnost",CategoryId=4,ParentCategoryName="Umjetnost"},
+            new SubCategory{Id=36,Name="Knjizevnost",Keywords="",DisplayName="Književnost",CategoryId=5,ParentCategoryName="Knjige-tisak"},
+            new SubCategory{Id=37,Name="Znanost-enciklopedije",Keywords="",DisplayName="Znanost i enciklopedije",CategoryId=5,ParentCategoryName="Knjige-tisak"},
+            new SubCategory{Id=38,Name="Atlasi-karte",Keywords="",DisplayName="Atlasi i karte",CategoryId=5,ParentCategoryName="Knjige-tisak"},
+            new SubCategory{Id=39,Name="Magazini-casopisi",Keywords="",DisplayName="Magazini i časopisi",CategoryId=5,ParentCategoryName="Knjige-tisak"},
+            new SubCategory{Id=40,Name="Stripovi",Keywords="",DisplayName="Stripovi",CategoryId=5,ParentCategoryName="Knjige-tisak"},
+            new SubCategory{Id=41,Name="Djecja-literatura",Keywords="",DisplayName="Dječja literatura",CategoryId=5,ParentCategoryName="Knjige-tisak"},
+            new SubCategory{Id=42,Name="Ostalo-tisak",Keywords="",DisplayName="Ostalo - tisak",CategoryId=5,ParentCategoryName="Knjige-tisak"},
+            new SubCategory{Id=43,Name="Glazbeni-instrumenti",Keywords="muzički,instrumenti",DisplayName="Glazbeni instrumenti",CategoryId=6,ParentCategoryName="Glazba-film"},
+            new SubCategory{Id=44,Name="CDovi",Keywords="",DisplayName="CDovi",CategoryId=6,ParentCategoryName="Glazba-film"},
+            new SubCategory{Id=45,Name="Audio-Kasete",Keywords="",DisplayName="Audio kasete",CategoryId=6,ParentCategoryName="Glazba-film"},
+            new SubCategory{Id=46,Name="Gramofonske-ploce",Keywords="",DisplayName="Gramofonske ploče",CategoryId=6,ParentCategoryName="Glazba-film"},
+            new SubCategory{Id=47,Name="DVD-BluRay",Keywords="",DisplayName="DVD i BluRay",CategoryId=6,ParentCategoryName="Glazba-film"},
+            new SubCategory{Id=48,Name="VHS",Keywords="",DisplayName="VHS",CategoryId=6,ParentCategoryName="Glazba-film"},
+            new SubCategory{Id=49,Name="Ostalo-glazba-film",Keywords="",DisplayName="Ostalo - glazba i film",CategoryId=6,ParentCategoryName="Glazba-film"},
+            new SubCategory{Id=50,Name="TV-oprema",Keywords="Televizori",DisplayName="TV i oprema",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=51,Name="Fotoaparati-kamere",Keywords="",DisplayName="Fotoaparati i kamere",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=52,Name="Dronovi",Keywords="",DisplayName="Dronovi",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=53,Name="Radio-telefoni",Keywords="radioprijemnik,radioprijemnici",DisplayName="Radio i telefoni",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=54,Name="Zvucnici-pojacala",Keywords="zvučnik,pojačalo",DisplayName="Zvučnici i pojačala",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=55,Name="Linije-kasetofoni",Keywords="kazetofoni",DisplayName="Linije i kasetofoni",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=56,Name="Kucno-kino-dvd-playeri",Keywords="kućno kino",DisplayName="Kućna kina i DVD playeri",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=57,Name="MP3-walkman-ipod",Keywords="mp3 playeri",DisplayName="MP3, walkmani, iPodi",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=58,Name="Ostalo-audio-video",Keywords="",DisplayName="Ostalo - audio / video",CategoryId=7,ParentCategoryName="Audio-video"},
+            new SubCategory{Id=59,Name="Desktop-racunala",Keywords="",DisplayName="Desktop računala,pc,kompjuteri,kompjutori",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=60,Name="Laptopi",Keywords="",DisplayName="Laptopi",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=61,Name="Racunalna-oprema",Keywords="kompjuterska oprema",DisplayName="Računalna oprema",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=62,Name="Mobiteli",Keywords="mobilni telefoni",DisplayName="Mobiteli",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=63,Name="Punjaci-oprema-mobiteli",Keywords="",DisplayName="Punjači i oprema za mobitele",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=64,Name="Pametni-satovi",Keywords="",DisplayName="Pametni satovi",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=65,Name="Tableti",Keywords="",DisplayName="Tableti",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=66,Name="Ostalo-racunala-mobiteli",Keywords="",DisplayName="Ostalo - računala i mobiteli",CategoryId=8,ParentCategoryName="Racunala-mobiteli"},
+            new SubCategory{Id=67,Name="Konzole",Keywords="konzola",DisplayName="Konzole",CategoryId=9,ParentCategoryName="Konzole-igrice"},
+            new SubCategory{Id=68,Name="Videoigre",Keywords="igrice,videoigrice",DisplayName="Videoigre",CategoryId=9,ParentCategoryName="Konzole-igrice"},
+            new SubCategory{Id=69,Name="Oprema-dodaci-konzole",Keywords="",DisplayName="Oprema i dodaci",CategoryId=9,ParentCategoryName="Konzole-igrice"},
+            new SubCategory{Id=70,Name="Zenska-odjeca",Keywords="Odjeca za zene,Odjeća za žene",DisplayName="Ženska odjeća",CategoryId=10,ParentCategoryName="Odjeca-obuca"},
+            new SubCategory{Id=71,Name="Zenska-obuca",Keywords="Obuca za zene,",DisplayName="Ženska obuća",CategoryId=10,ParentCategoryName="Odjeca-obuca"},
+            new SubCategory{Id=72,Name="Muska-odjeca",Keywords="",DisplayName="Muška odjeća",CategoryId=10,ParentCategoryName="Odjeca-obuca"},
+            new SubCategory{Id=73,Name="Muska-obuca",Keywords="",DisplayName="Muška obuća",CategoryId=10,ParentCategoryName="Odjeca-obuca"},
+            new SubCategory{Id=74,Name="Djecja-odjeca-obuca",Keywords="odjeca za djecu,odjeća za djecu",DisplayName="Dječja odjeća i obuća",CategoryId=10,ParentCategoryName="Odjeca-obuca"},
+            new SubCategory{Id=75,Name="Nakit",Keywords="",DisplayName="Nakit",CategoryId=11,ParentCategoryName="Nakit-satovi"},
+            new SubCategory{Id=76,Name="Rucni-satovi",Keywords="",DisplayName="Ručni satovi",CategoryId=11,ParentCategoryName="Nakit-satovi"},
+            new SubCategory{Id=77,Name="Zidni-satovi",Keywords="",DisplayName="Zidni satovi",CategoryId=11,ParentCategoryName="Nakit-satovi"},
+            new SubCategory{Id=78,Name="Brosevi-bedzevi",Keywords="",DisplayName="Broševi i bedževi",CategoryId=11,ParentCategoryName="Nakit-satovi"},
+            new SubCategory{Id=79,Name="Drago-kamenje",Keywords="",DisplayName="Drago kamenje",CategoryId=11,ParentCategoryName="Nakit-satovi"},
+            new SubCategory{Id=80,Name="Ostalo-nakit-satovi",Keywords="",DisplayName="Ostalo - nakit i satovi",CategoryId=11,ParentCategoryName="Nakit-satovi"},
+            new SubCategory{Id=81,Name="Torbice",Keywords="torbe,neseseri,tašne,tasne,tasnice,tašnice",DisplayName="Torbice",CategoryId=12,ParentCategoryName="Modni-dodaci"},
+            new SubCategory{Id=82,Name="Naocale",Keywords="",DisplayName="Naočale",CategoryId=12,ParentCategoryName="Modni-dodaci"},
+            new SubCategory{Id=83,Name="Kaisevi",Keywords="remenovi,remeni,remenje",DisplayName="Kaiševi",CategoryId=12,ParentCategoryName="Modni-dodaci"},
+            new SubCategory{Id=84,Name="Novcanici",Keywords="",DisplayName="Novčanici",CategoryId=12,ParentCategoryName="Modni-dodaci"},
+            new SubCategory{Id=85,Name="Ostalo-modni-dodaci",Keywords="",DisplayName="Ostalo - modni dodaci",CategoryId=12,ParentCategoryName="Modni-dodaci"},
+            new SubCategory{Id=86,Name="Kozmetika-sminka",Keywords="maskare,maskara,puderi,ruzevi,ruževi,karmini",DisplayName="Kozmetika i šminka",CategoryId=13,ParentCategoryName="Ljepota-zdravlje"},
+            new SubCategory{Id=87,Name="Njega-kose-tijela",Keywords="samponi,šamponi,ulja,gelovi",DisplayName="Njega kose i tijela",CategoryId=13,ParentCategoryName="Ljepota-zdravlje"},
+            new SubCategory{Id=88,Name="Parfemi",Keywords="mirisi",DisplayName="Parfemi",CategoryId=13,ParentCategoryName="Ljepota-zdravlje"},
+            new SubCategory{Id=89,Name="Zdravlje",Keywords="",DisplayName="Zdravlje",CategoryId=13,ParentCategoryName="Ljepota-zdravlje"},
+            new SubCategory{Id=90,Name="Ostalo-ljepota-zdravlje",Keywords="",DisplayName="Ostalo - ljepota i zdravlje",CategoryId=13,ParentCategoryName="Ljepota-zdravlje"},
+            new SubCategory{Id=91,Name="Sportska-odjeca-obuca-zene",Keywords="",DisplayName="Sportska odjeća i obuća - žene",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=92,Name="Sportska-odjeca-obuca-muski",Keywords="",DisplayName="Sportska odjeća i obuća - muški",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=93,Name="Sportovi-s-loptom",Keywords="",DisplayName="Sportovi s loptom",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=94,Name="Vodeni-sportovi",Keywords="",DisplayName="Vodeni sportovi",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=95,Name="Zimski-sportovi",Keywords="",DisplayName="Zimski sportovi",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=96,Name="Fitness-trening",Keywords="",DisplayName="Fitness i trening",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=97,Name="Lov-ribolov",Keywords="",DisplayName="Lov i ribolov",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=98,Name="Bicikli-role-romobili",Keywords="bicikla",DisplayName="Bicikli, role, romobili",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=99,Name="Posteri",Keywords="",DisplayName="Posteri",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=100,Name="Ostalo-sport",Keywords="",DisplayName="Ostalo - sport",CategoryId=14,ParentCategoryName="Sport-oprema"},
+            new SubCategory{Id=101,Name="Namjestaj",Keywords="",DisplayName="Namještaj",CategoryId=15,ParentCategoryName="Dom-vrt"},
+            new SubCategory{Id=102,Name="Bijela-tehnika",Keywords="",DisplayName="Bijela tehnika",CategoryId=15,ParentCategoryName="Dom-vrt"},
+            new SubCategory{Id=103,Name="Alati-pribor",Keywords="",DisplayName="Alati i pribor",CategoryId=15,ParentCategoryName="Dom-vrt"},
+            new SubCategory{Id=104,Name="Rasvjeta-sigurnost",Keywords="",DisplayName="Rasvjeta i sigurnost",CategoryId=15,ParentCategoryName="Dom-vrt"},
+            new SubCategory{Id=105,Name="Ciscenje",Keywords="",DisplayName="Sve za čišćenje",CategoryId=15,ParentCategoryName="Dom-vrt"},
+            new SubCategory{Id=106,Name="Vrt",Keywords="",DisplayName="Sve za vrt",CategoryId=15,ParentCategoryName="Dom-vrt"},
+            new SubCategory{Id=107,Name="Ostalo-dom",Keywords="",DisplayName="Ostalo - dom",CategoryId=15,ParentCategoryName="Dom-vrt"},
+            new SubCategory{Id=108,Name="Akcijske-figurice",Keywords="akcione figurice",DisplayName="Akcijske figurice",CategoryId=16,ParentCategoryName="Igre-igracke"},
+            new SubCategory{Id=109,Name="Na-baterije",Keywords="igračke na baterije,igracke na baterije",DisplayName="Na baterije",CategoryId=16,ParentCategoryName="Igre-igracke"},
+            new SubCategory{Id=110,Name="Plisanci",Keywords="plišanci,plisane igracke",DisplayName="Plišane igračke",CategoryId=16,ParentCategoryName="Igre-igracke"},
+            new SubCategory{Id=111,Name="Lego-slaganje",Keywords="lego kockice,lego kocke",DisplayName="Lego i slaganje",CategoryId=16,ParentCategoryName="Igre-igracke"},
+            new SubCategory{Id=112,Name="Drustvene-igre",Keywords="",DisplayName="Društvene igre",CategoryId=16,ParentCategoryName="Igre-igracke"},
+            new SubCategory{Id=113,Name="Ostalo-igracke",Keywords="",DisplayName="Ostalo - igre i igračke",CategoryId=16,ParentCategoryName="Igre-igracke"},
+            new SubCategory{Id=114,Name="Skolski-pribor",Keywords="za školu,za skolu,skolski pribor",DisplayName="Školski pribor",CategoryId=17,ParentCategoryName="Skola-posao"},
+            new SubCategory{Id=115,Name="Uredski-pribor",Keywords="za posao,za ured",DisplayName="Uredski pribor",CategoryId=17,ParentCategoryName="Skola-posao"},
+            new SubCategory{Id=116,Name="Vozila",Keywords="auta,auti,automobili,motori,quadovi,kombiji,dzipovi,džipovi",DisplayName="Vozila i oprema",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=117,Name="Za-bebe",Keywords="",DisplayName="Sve za bebe",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=118,Name="Kucni-ljubimci",Keywords="kucni,ljubimci,psi,mačke,macke",DisplayName="Kućni ljubimci",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=119,Name="Maske",Keywords="",DisplayName="Maske",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=120,Name="Medicinska-pomagala",Keywords="",DisplayName="Medicinska pomagala",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=121,Name="Mjernoregulacijski-instrumenti",Keywords="",DisplayName="Mjernoregulacijski instrumenti",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=122,Name="Spijunska-oprema",Keywords="",DisplayName="Špijunska oprema",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=123,Name="Oprema-pusaci",Keywords="",DisplayName="Oprema za pušače",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=124,Name="Seksualna-pomagala",Keywords="sex,porno",DisplayName="Seksualna pomagala",CategoryId=18,ParentCategoryName="Ostalo"},
+            new SubCategory{Id=125,Name="Ostalo-nesvrstano",Keywords="",DisplayName="Ostalo - nesvrstano",CategoryId=18,ParentCategoryName="Ostalo"});
     }
+}

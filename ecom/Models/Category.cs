@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace ecom.Models;
 
@@ -13,4 +14,6 @@ public class Category
     public string? Note { get; set; }
     [Display(Name = "Kategorija")]
     public string? DisplayName { get; set;}
+    public virtual List<SubCategory>? SubCategories { get; set; }
+    public virtual List<Product>? Products { get; set; }
 }

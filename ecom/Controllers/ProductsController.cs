@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ecom.Models;
 using ecom.Data;
 using System.Configuration;
+using System.Text.Json;
 
 namespace ecom.Controllers
 {
@@ -63,27 +64,42 @@ namespace ecom.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            string host = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/";
+            ViewData["baseurl"] = host;
             PopulateCategories();
-            PopulateSubCategories(); // to be changed?
+            var cats = GetSubCategories("1");
+            //PopulateSubCategories(); // to be changed?
             return View();
         }
 
         private void PopulateCategories()
         {
             var categories = _context.Categories.ToList();
-            ViewBag.Categories = new SelectList(categories, "Id", "DisplayName", null);
+            ViewData["Categories"] = new SelectList(categories, "Id", "DisplayName", null);
         }
 
-        private void PopulateSubCategories()
+        public void PopulateSubCategories()
         {
-            List<SubCategory> subs = _context.SubCategories.ToList();
-            int i = 1;
-            foreach(var item in _context.Categories.ToList())
+            var subs = _context.SubCategories.ToList();
+            ViewData["SubCategories"] = new SelectList(subs, "Id", "DisplayName", null);
+        }
+
+        [HttpPost, ActionName("GetSubCategories")]
+        public JsonResult GetSubCategories(string categoryId)
+        {
+            int catId;
+            List<SubCategory> subs = new List<SubCategory>();
+            if (!string.IsNullOrEmpty(categoryId))
             {
-                //var subs = _context.
-                ViewBag.SubCategories = new SelectList(subs.Where(c => c.ParentCategoryId == item.Id), "Id", "DisplayName", null);
-                i++;
+                catId = Convert.ToInt32(categoryId);
+                subs = _context.SubCategories.Where(s => s.CategoryId.Equals(catId)).ToList();
             }
+            Dictionary<string, string> subCategories = new Dictionary<string, string>();
+            foreach(var item in subs)
+            {
+                subCategories.Add(item.Id.ToString(), item.Name);
+            }
+            return Json(subCategories);
         }
 
         // POST: Products/Create

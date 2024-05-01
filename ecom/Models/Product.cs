@@ -34,7 +34,10 @@ public class Product
     public int CategoryId { get; set; }
     private Category? _category;
     public Category Category { get  { return _category ??= new Category();} set { _category = value;}}
-    public required SubCategory SubCategory { get; set; }
+    private SubCategory? _subCategory;
+    [Required]
+    public int SubCategoryId { get; set;}
+    public SubCategory SubCategory { get  { return _subCategory ??= new SubCategory();} set { _subCategory = value;}}
     [Required]
     public required string ImagesUrl { get; set; }
     [Required]
