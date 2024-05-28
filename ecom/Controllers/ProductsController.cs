@@ -1,18 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ecom.Models;
 using ecom.Data;
-using System.Configuration;
-using System.Text.Json;
 
 namespace ecom.Controllers
 {
-    //[Route("predmeti")]
     public class ProductsController : Controller
     {
         private readonly ProductContext _context;
@@ -23,7 +16,6 @@ namespace ecom.Controllers
         }
 
         // GET: Products (by category)
-        //[Route("{category?}/{subcategory?}")]
         public async Task<IActionResult> Index(string category, string? subcategory)
         {
             if(subcategory == null)
@@ -35,12 +27,11 @@ namespace ecom.Controllers
             else
             {
                 ViewData["Category"] = await _context.Categories.Where(c => c.Name == category).FirstOrDefaultAsync();;
-                ViewData["Subcategory"] = await _context.SubCategories.Where(c => c.Name == subcategory).FirstOrDefaultAsync();;
-                return View(await _context.Products.Where(c => c.Category.Name == category && c.SubCategory.Name == subcategory && c.AuctionStart < DateTime.Now && c.AuctionEnd > DateTime.Now).ToListAsync());
+                ViewData["Subcategory"] = await _context.SubCategories.Where(c => c.RouteName == subcategory).FirstOrDefaultAsync();;
+                return View(await _context.Products.Where(c => c.Category.Name == category && c.SubCategory.RouteName == subcategory && c.AuctionStart < DateTime.Now && c.AuctionEnd > DateTime.Now).ToListAsync());
             }
         }
 
-        //[Route("detalji/{id?}")]
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -60,14 +51,12 @@ namespace ecom.Controllers
             return View(product);
         }
 
-        //[Route("dodavanje")]
         // GET: Products/Create
         public IActionResult Create()
         {
             string host = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/";
             ViewData["baseurl"] = host;
             PopulateCategories();
-            var sub = GetSubCategories("1");
             return View();
         }
 
@@ -77,13 +66,6 @@ namespace ecom.Controllers
             ViewData["Categories"] = new SelectList(categories, "Id", "DisplayName", null);
         }
 
-        public void PopulateSubCategories()
-        {
-            var subs = _context.SubCategories.ToList();
-            ViewData["SubCategories"] = new SelectList(subs, "Id", "DisplayName", null);
-        }
-
-        //[Route("GetSubCategories/{categoryId}")]
         [HttpPost, ActionName("GetSubCategories")]
         public JsonResult GetSubCategories(string categoryId)
         {
@@ -101,16 +83,17 @@ namespace ecom.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        //[Route("dodavanje")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-        [Bind("Name,StartingPrice,Description,AuctionStart,AuctionEnd,CategoryId,SubCategoryId,IsNew,IsHighlighted,IsAdvertised,HasExtraPictures,"+
+        [Bind("Name,StartingPrice,Description,AuctionStart,AuctionEnd,SubCategoryId,CategoryId,IsNew,IsHighlighted,"+
+        "IsAdvertised,HasExtraPictures,"+
         "IsStartTimeAdjusted,IsEndTimeAdjusted")] 
         Product product)
-        {
-            /* if (ModelState.IsValid)
-            { */
-            try{
+        {//if modelstate isvalid
+            try
+            {
+                product.SubCategory = _context.SubCategories.First(c => c.Id == product.SubCategoryId);
+                product.Category = _context.Categories.First(c => c.Id == product.CategoryId); //moraš instancirat ovo dvoje!
                 product.OfferCount = 0;
                 product.CurrentPrice = product.StartingPrice;
                 product.IsSold = false;
@@ -124,7 +107,7 @@ namespace ecom.Controllers
                 //product.SellerId = User.userid; headimageurl isseeded currentprice
                 _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new{ category = product.Category.Name, subcategory = product.SubCategory.RouteName });
             }
             catch(DbUpdateException)
             {
@@ -132,12 +115,9 @@ namespace ecom.Controllers
                 "Try again, and if the problem persists, contact your " + 
                 "system administrator.");
             } 
-            /* } */
-            ModelState.AddModelError("", "Please choose a valid image file and writer for the article.");
             return View(product);
         }
 
-        //[Route("izmjena/{id?}")]
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -190,7 +170,6 @@ namespace ecom.Controllers
         }
 
         // GET: Products/Delete/5
-        //[Route("brisanje/{id?}")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

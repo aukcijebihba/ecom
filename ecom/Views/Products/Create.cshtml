@@ -18,7 +18,6 @@
         var value = obj.value;
         var url = "@baseurl";
         
-        var ph = [{"Id" : "1", "Name" : "Militarija"},{"Id" : "2", "Name" : "Filatelija"}];
         $.post(url + "Products/GetSubCategories", { categoryId: value }, function (data) {
             debugger;
             PopulateDropDown("#ddlSubCategoryId", data);
@@ -27,7 +26,7 @@
 
     function PopulateDropDown(dropDownId, list, selectedId) {
         $(dropDownId).empty();
-        $(dropDownId).append("<option>--Please Product--</option>");
+        $(dropDownId).append("<option>--Izaberi potkategoriju--</option>");
         $.each(list, function (index, row) {
             $(dropDownId).append("<option value='" + row.id + "'>" + row.name + "</option>")
         });

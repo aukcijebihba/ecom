@@ -9,8 +9,8 @@
     if(ViewData["Subcategory"] != null)
     {
         var sub = (SubCategory?)ViewData["Subcategory"];
-        ViewData["Title"] = sub?.DisplayName + " - Aukcije BiH";
-        head = sub?.DisplayName;
+        ViewData["Title"] = sub?.Name + " - Aukcije BiH";
+        head = sub?.Name;
     }
     else
     {
@@ -44,7 +44,7 @@
     @foreach(var item in subcategories)
     {
         <div class="card col-md-3" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
-            <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="@item.ParentCategoryName" asp-route-subcategory="@item.Name">@item.DisplayName</a>
+            <a asp-controller="Products" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-action="Index" asp-route-category="@item.ParentCategoryName" asp-route-subcategory="@item.RouteName">@item.Name</a>
         </div>
     }
     </div>

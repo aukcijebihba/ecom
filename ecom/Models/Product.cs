@@ -21,7 +21,7 @@ public class Product
     [Display(Name = "Prodavač")]
     public int SellerId { get; set; }
     [Required]
-    [Display(Name = "")]
+    [Display(Name = "Kupac")]
     public int BuyerId { get; set; }
     [Required]
     public int OfferCount { get; set; }

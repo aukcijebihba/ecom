@@ -460,17 +460,16 @@ namespace ecom.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Keywords")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ParentCategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RouteName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -484,1126 +483,1126 @@ namespace ecom.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            DisplayName = "Militarija",
                             Keywords = "",
                             Name = "Militarija",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Militarija"
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 1,
-                            DisplayName = "Filatelija",
                             Keywords = "",
                             Name = "Filatelija",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Filatelija"
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 1,
-                            DisplayName = "Figurice",
                             Keywords = "figure",
                             Name = "Figurice",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Figurice"
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 1,
-                            DisplayName = "Sličice, karte i albumi",
                             Keywords = "slicice,kartice,igraće karte,igrace karte",
-                            Name = "Slicice-karte-albumi",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            Name = "Sličice, karte i albumi",
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Slicice-karte-albumi"
                         },
                         new
                         {
                             Id = 5,
                             CategoryId = 1,
-                            DisplayName = "Razglednice",
                             Keywords = "",
                             Name = "Razglednice",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Razglednice"
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 1,
-                            DisplayName = "Modeli i makete",
                             Keywords = "modelarstvo,maketarstvo,autići,autici,modeli auta",
-                            Name = "Modeli-makete",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            Name = "Modeli i makete",
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Modeli-makete"
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 1,
-                            DisplayName = "Suveniri",
                             Keywords = "",
                             Name = "Suveniri",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Suveniri"
                         },
                         new
                         {
                             Id = 8,
                             CategoryId = 1,
-                            DisplayName = "Privjesci",
                             Keywords = "privesci,privjesci za ključeve,privjesci za kljuceve",
                             Name = "Privjesci",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Privjesci"
                         },
                         new
                         {
                             Id = 9,
                             CategoryId = 1,
-                            DisplayName = "Ulaznice i karte",
                             Keywords = "",
-                            Name = "Ulaznice-karte",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            Name = "Ulaznice i karte",
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Ulaznice-karte"
                         },
                         new
                         {
                             Id = 10,
                             CategoryId = 1,
-                            DisplayName = "Telefonske kartice",
                             Keywords = "",
-                            Name = "Telefonske-kartice",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            Name = "Telefonske kartice",
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Telefonske-kartice"
                         },
                         new
                         {
                             Id = 11,
                             CategoryId = 1,
-                            DisplayName = "Pehari i medalje",
                             Keywords = "trofeji,kolajne",
-                            Name = "Pehari-medalje",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            Name = "Pehari i medalje",
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Pehari-medalje"
                         },
                         new
                         {
                             Id = 12,
                             CategoryId = 1,
-                            DisplayName = "Registracijske tablice",
                             Keywords = "registracije,registarske tablice",
-                            Name = "Registracijske-tablice",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            Name = "Registracijske tablice",
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Registracijske-tablice"
                         },
                         new
                         {
                             Id = 13,
                             CategoryId = 1,
-                            DisplayName = "Zastave",
                             Keywords = "zastavice",
                             Name = "Zastave",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Zastave"
                         },
                         new
                         {
                             Id = 14,
                             CategoryId = 1,
-                            DisplayName = "Salvete",
                             Keywords = "salvetice",
                             Name = "Salvete",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Salvete"
                         },
                         new
                         {
                             Id = 15,
                             CategoryId = 1,
-                            DisplayName = "Lotovi",
                             Keywords = "",
                             Name = "Lotovi",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Lotovi"
                         },
                         new
                         {
                             Id = 16,
                             CategoryId = 1,
-                            DisplayName = "Ostalo - kolekcionarstvo",
                             Keywords = "",
-                            Name = "Ostalo-kolekcionarstvo",
-                            ParentCategoryName = "Kolekcionarstvo"
+                            Name = "Ostalo - kolekcionarstvo",
+                            ParentCategoryName = "Kolekcionarstvo",
+                            RouteName = "Ostalo-kolekcionarstvo"
                         },
                         new
                         {
                             Id = 17,
                             CategoryId = 2,
-                            DisplayName = "Kovanice",
                             Keywords = "novčići,novcici",
                             Name = "Kovanice",
-                            ParentCategoryName = "Numizmatika"
+                            ParentCategoryName = "Numizmatika",
+                            RouteName = "Kovanice"
                         },
                         new
                         {
                             Id = 18,
                             CategoryId = 2,
-                            DisplayName = "Novčanice",
                             Keywords = "novcanice",
-                            Name = "Novcanice",
-                            ParentCategoryName = "Numizmatika"
+                            Name = "Novčanice",
+                            ParentCategoryName = "Numizmatika",
+                            RouteName = "Novcanice"
                         },
                         new
                         {
                             Id = 19,
                             CategoryId = 2,
-                            DisplayName = "Bonovi",
                             Keywords = "",
                             Name = "Bonovi",
-                            ParentCategoryName = "Numizmatika"
+                            ParentCategoryName = "Numizmatika",
+                            RouteName = "Bonovi"
                         },
                         new
                         {
                             Id = 20,
                             CategoryId = 2,
-                            DisplayName = "Žetoni",
                             Keywords = "",
-                            Name = "Zetoni",
-                            ParentCategoryName = "Numizmatika"
+                            Name = "Žetoni",
+                            ParentCategoryName = "Numizmatika",
+                            RouteName = "Zetoni"
                         },
                         new
                         {
                             Id = 21,
                             CategoryId = 2,
-                            DisplayName = "Ostalo - numizmatika",
                             Keywords = "",
-                            Name = "Ostalo-numizmatika",
-                            ParentCategoryName = "Numizmatika"
+                            Name = "Ostalo - numizmatika",
+                            ParentCategoryName = "Numizmatika",
+                            RouteName = "Ostalo-numizmatika"
                         },
                         new
                         {
                             Id = 22,
                             CategoryId = 3,
-                            DisplayName = "Keramika, porculan i staklo",
                             Keywords = "",
-                            Name = "Keramika-porculan-staklo",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Keramika, porculan i staklo",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Keramika-porculan-staklo"
                         },
                         new
                         {
                             Id = 23,
                             CategoryId = 3,
-                            DisplayName = "Stari namještaj",
                             Keywords = "starinski",
-                            Name = "Stari-namjestaj",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Stari namještaj",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Stari-namjestaj"
                         },
                         new
                         {
                             Id = 24,
                             CategoryId = 3,
-                            DisplayName = "Stari uređaji i aparati",
                             Keywords = "",
-                            Name = "Stari-uredaji-aparati",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Stari uređaji i aparati",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Stari-uredaji-aparati"
                         },
                         new
                         {
                             Id = 25,
                             CategoryId = 3,
-                            DisplayName = "Stari pribor i oprema",
                             Keywords = "",
-                            Name = "Stari-pribor-oprema",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Stari pribor i oprema",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Stari-pribor-oprema"
                         },
                         new
                         {
                             Id = 26,
                             CategoryId = 3,
-                            DisplayName = "Stara odjeća i obuća",
                             Keywords = "",
-                            Name = "Stara-odjeca-obuca",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Stara odjeća i obuća",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Stara-odjeca-obuca"
                         },
                         new
                         {
                             Id = 27,
                             CategoryId = 3,
-                            DisplayName = "Stari nakit i satovi",
                             Keywords = "starinski nakit",
-                            Name = "Stari-nakit-satovi",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Stari nakit i satovi",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Stari-nakit-satovi"
                         },
                         new
                         {
                             Id = 28,
                             CategoryId = 3,
-                            DisplayName = "Stare knjige i dokumenti",
                             Keywords = "",
-                            Name = "Stare-knjige-dokumenti",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Stare knjige i dokumenti",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Stare-knjige-dokumenti"
                         },
                         new
                         {
                             Id = 29,
                             CategoryId = 3,
-                            DisplayName = "Ostalo - antikviteti",
                             Keywords = "",
-                            Name = "Ostalo-antikviteti",
-                            ParentCategoryName = "Antikviteti"
+                            Name = "Ostalo - antikviteti",
+                            ParentCategoryName = "Antikviteti",
+                            RouteName = "Ostalo-antikviteti"
                         },
                         new
                         {
                             Id = 30,
                             CategoryId = 4,
-                            DisplayName = "Umjetničke slike",
                             Keywords = "",
-                            Name = "Umjetnicke-slike",
-                            ParentCategoryName = "Umjetnost"
+                            Name = "Umjetničke slike",
+                            ParentCategoryName = "Umjetnost",
+                            RouteName = "Umjetnicke-slike"
                         },
                         new
                         {
                             Id = 31,
                             CategoryId = 4,
-                            DisplayName = "Fotografije",
                             Keywords = "",
                             Name = "Fotografije",
-                            ParentCategoryName = "Umjetnost"
+                            ParentCategoryName = "Umjetnost",
+                            RouteName = "Fotografije"
                         },
                         new
                         {
                             Id = 32,
                             CategoryId = 4,
-                            DisplayName = "Ikone",
                             Keywords = "",
                             Name = "Ikone",
-                            ParentCategoryName = "Umjetnost"
+                            ParentCategoryName = "Umjetnost",
+                            RouteName = "Ikone"
                         },
                         new
                         {
                             Id = 33,
                             CategoryId = 4,
-                            DisplayName = "Skulpture",
                             Keywords = "",
                             Name = "Skulpture",
-                            ParentCategoryName = "Umjetnost"
+                            ParentCategoryName = "Umjetnost",
+                            RouteName = "Skulpture"
                         },
                         new
                         {
                             Id = 34,
                             CategoryId = 4,
-                            DisplayName = "Gobleni",
                             Keywords = "",
                             Name = "Gobleni",
-                            ParentCategoryName = "Umjetnost"
+                            ParentCategoryName = "Umjetnost",
+                            RouteName = "Gobleni"
                         },
                         new
                         {
                             Id = 35,
                             CategoryId = 4,
-                            DisplayName = "Ostalo - umjetnost",
                             Keywords = "",
-                            Name = "Ostalo-umjetnost",
-                            ParentCategoryName = "Umjetnost"
+                            Name = "Ostalo - umjetnost",
+                            ParentCategoryName = "Umjetnost",
+                            RouteName = "Ostalo-umjetnost"
                         },
                         new
                         {
                             Id = 36,
                             CategoryId = 5,
-                            DisplayName = "Književnost",
                             Keywords = "",
-                            Name = "Knjizevnost",
-                            ParentCategoryName = "Knjige-tisak"
+                            Name = "Književnost",
+                            ParentCategoryName = "Knjige-tisak",
+                            RouteName = "Knjizevnost"
                         },
                         new
                         {
                             Id = 37,
                             CategoryId = 5,
-                            DisplayName = "Znanost i enciklopedije",
                             Keywords = "",
-                            Name = "Znanost-enciklopedije",
-                            ParentCategoryName = "Knjige-tisak"
+                            Name = "Znanost i enciklopedije",
+                            ParentCategoryName = "Knjige-tisak",
+                            RouteName = "Znanost-enciklopedije"
                         },
                         new
                         {
                             Id = 38,
                             CategoryId = 5,
-                            DisplayName = "Atlasi i karte",
                             Keywords = "",
-                            Name = "Atlasi-karte",
-                            ParentCategoryName = "Knjige-tisak"
+                            Name = "Atlasi i karte",
+                            ParentCategoryName = "Knjige-tisak",
+                            RouteName = "Atlasi-karte"
                         },
                         new
                         {
                             Id = 39,
                             CategoryId = 5,
-                            DisplayName = "Magazini i časopisi",
                             Keywords = "",
-                            Name = "Magazini-casopisi",
-                            ParentCategoryName = "Knjige-tisak"
+                            Name = "Magazini i časopisi",
+                            ParentCategoryName = "Knjige-tisak",
+                            RouteName = "Magazini-casopisi"
                         },
                         new
                         {
                             Id = 40,
                             CategoryId = 5,
-                            DisplayName = "Stripovi",
                             Keywords = "",
                             Name = "Stripovi",
-                            ParentCategoryName = "Knjige-tisak"
+                            ParentCategoryName = "Knjige-tisak",
+                            RouteName = "Stripovi"
                         },
                         new
                         {
                             Id = 41,
                             CategoryId = 5,
-                            DisplayName = "Dječja literatura",
                             Keywords = "",
-                            Name = "Djecja-literatura",
-                            ParentCategoryName = "Knjige-tisak"
+                            Name = "Dječja literatura",
+                            ParentCategoryName = "Knjige-tisak",
+                            RouteName = "Djecja-literatura"
                         },
                         new
                         {
                             Id = 42,
                             CategoryId = 5,
-                            DisplayName = "Ostalo - tisak",
                             Keywords = "",
-                            Name = "Ostalo-tisak",
-                            ParentCategoryName = "Knjige-tisak"
+                            Name = "Ostalo - tisak",
+                            ParentCategoryName = "Knjige-tisak",
+                            RouteName = "Ostalo-tisak"
                         },
                         new
                         {
                             Id = 43,
                             CategoryId = 6,
-                            DisplayName = "Glazbeni instrumenti",
                             Keywords = "muzički,instrumenti",
-                            Name = "Glazbeni-instrumenti",
-                            ParentCategoryName = "Glazba-film"
+                            Name = "Glazbeni instrumenti",
+                            ParentCategoryName = "Glazba-film",
+                            RouteName = "Glazbeni-instrumenti"
                         },
                         new
                         {
                             Id = 44,
                             CategoryId = 6,
-                            DisplayName = "CDovi",
                             Keywords = "",
                             Name = "CDovi",
-                            ParentCategoryName = "Glazba-film"
+                            ParentCategoryName = "Glazba-film",
+                            RouteName = "CDovi"
                         },
                         new
                         {
                             Id = 45,
                             CategoryId = 6,
-                            DisplayName = "Audio kasete",
                             Keywords = "",
-                            Name = "Audio-Kasete",
-                            ParentCategoryName = "Glazba-film"
+                            Name = "Audio kasete",
+                            ParentCategoryName = "Glazba-film",
+                            RouteName = "Audio-Kasete"
                         },
                         new
                         {
                             Id = 46,
                             CategoryId = 6,
-                            DisplayName = "Gramofonske ploče",
                             Keywords = "",
-                            Name = "Gramofonske-ploce",
-                            ParentCategoryName = "Glazba-film"
+                            Name = "Gramofonske ploče",
+                            ParentCategoryName = "Glazba-film",
+                            RouteName = "Gramofonske-ploce"
                         },
                         new
                         {
                             Id = 47,
                             CategoryId = 6,
-                            DisplayName = "DVD i BluRay",
                             Keywords = "",
-                            Name = "DVD-BluRay",
-                            ParentCategoryName = "Glazba-film"
+                            Name = "DVD i BluRay",
+                            ParentCategoryName = "Glazba-film",
+                            RouteName = "DVD-BluRay"
                         },
                         new
                         {
                             Id = 48,
                             CategoryId = 6,
-                            DisplayName = "VHS",
                             Keywords = "",
                             Name = "VHS",
-                            ParentCategoryName = "Glazba-film"
+                            ParentCategoryName = "Glazba-film",
+                            RouteName = "VHS"
                         },
                         new
                         {
                             Id = 49,
                             CategoryId = 6,
-                            DisplayName = "Ostalo - glazba i film",
                             Keywords = "",
-                            Name = "Ostalo-glazba-film",
-                            ParentCategoryName = "Glazba-film"
+                            Name = "Ostalo - glazba i film",
+                            ParentCategoryName = "Glazba-film",
+                            RouteName = "Ostalo-glazba-film"
                         },
                         new
                         {
                             Id = 50,
                             CategoryId = 7,
-                            DisplayName = "TV i oprema",
                             Keywords = "Televizori",
-                            Name = "TV-oprema",
-                            ParentCategoryName = "Audio-video"
+                            Name = "TV i oprema",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "TV-oprema"
                         },
                         new
                         {
                             Id = 51,
                             CategoryId = 7,
-                            DisplayName = "Fotoaparati i kamere",
                             Keywords = "",
-                            Name = "Fotoaparati-kamere",
-                            ParentCategoryName = "Audio-video"
+                            Name = "Fotoaparati i kamere",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "Fotoaparati-kamere"
                         },
                         new
                         {
                             Id = 52,
                             CategoryId = 7,
-                            DisplayName = "Dronovi",
                             Keywords = "",
                             Name = "Dronovi",
-                            ParentCategoryName = "Audio-video"
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "Dronovi"
                         },
                         new
                         {
                             Id = 53,
                             CategoryId = 7,
-                            DisplayName = "Radio i telefoni",
                             Keywords = "radioprijemnik,radioprijemnici",
-                            Name = "Radio-telefoni",
-                            ParentCategoryName = "Audio-video"
+                            Name = "Radio i telefoni",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "Radio-telefoni"
                         },
                         new
                         {
                             Id = 54,
                             CategoryId = 7,
-                            DisplayName = "Zvučnici i pojačala",
                             Keywords = "zvučnik,pojačalo",
-                            Name = "Zvucnici-pojacala",
-                            ParentCategoryName = "Audio-video"
+                            Name = "Zvučnici i pojačala",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "Zvucnici-pojacala"
                         },
                         new
                         {
                             Id = 55,
                             CategoryId = 7,
-                            DisplayName = "Linije i kasetofoni",
                             Keywords = "kazetofoni",
-                            Name = "Linije-kasetofoni",
-                            ParentCategoryName = "Audio-video"
+                            Name = "Linije i kasetofoni",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "Linije-kasetofoni"
                         },
                         new
                         {
                             Id = 56,
                             CategoryId = 7,
-                            DisplayName = "Kućna kina i DVD playeri",
                             Keywords = "kućno kino",
-                            Name = "Kucno-kino-dvd-playeri",
-                            ParentCategoryName = "Audio-video"
+                            Name = "Kućna kina i DVD playeri",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "Kucno-kino-dvd-playeri"
                         },
                         new
                         {
                             Id = 57,
                             CategoryId = 7,
-                            DisplayName = "MP3, walkmani, iPodi",
                             Keywords = "mp3 playeri",
-                            Name = "MP3-walkman-ipod",
-                            ParentCategoryName = "Audio-video"
+                            Name = "MP3, walkmani, iPodi",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "MP3-walkman-ipod"
                         },
                         new
                         {
                             Id = 58,
                             CategoryId = 7,
-                            DisplayName = "Ostalo - audio / video",
                             Keywords = "",
-                            Name = "Ostalo-audio-video",
-                            ParentCategoryName = "Audio-video"
+                            Name = "Ostalo - audio / video",
+                            ParentCategoryName = "Audio-video",
+                            RouteName = "Ostalo-audio-video"
                         },
                         new
                         {
                             Id = 59,
                             CategoryId = 8,
-                            DisplayName = "Desktop računala,pc,kompjuteri,kompjutori",
-                            Keywords = "",
-                            Name = "Desktop-racunala",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            Keywords = "PC, kompjuteri, kompjutori",
+                            Name = "Desktop računala",
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Desktop-racunala"
                         },
                         new
                         {
                             Id = 60,
                             CategoryId = 8,
-                            DisplayName = "Laptopi",
                             Keywords = "",
                             Name = "Laptopi",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Laptopi"
                         },
                         new
                         {
                             Id = 61,
                             CategoryId = 8,
-                            DisplayName = "Računalna oprema",
                             Keywords = "kompjuterska oprema",
-                            Name = "Racunalna-oprema",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            Name = "Računalna oprema",
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Racunalna-oprema"
                         },
                         new
                         {
                             Id = 62,
                             CategoryId = 8,
-                            DisplayName = "Mobiteli",
                             Keywords = "mobilni telefoni",
                             Name = "Mobiteli",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Mobiteli"
                         },
                         new
                         {
                             Id = 63,
                             CategoryId = 8,
-                            DisplayName = "Punjači i oprema za mobitele",
                             Keywords = "",
-                            Name = "Punjaci-oprema-mobiteli",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            Name = "Punjači i oprema za mobitele",
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Punjaci-oprema-mobiteli"
                         },
                         new
                         {
                             Id = 64,
                             CategoryId = 8,
-                            DisplayName = "Pametni satovi",
                             Keywords = "",
-                            Name = "Pametni-satovi",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            Name = "Pametni satovi",
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Pametni-satovi"
                         },
                         new
                         {
                             Id = 65,
                             CategoryId = 8,
-                            DisplayName = "Tableti",
                             Keywords = "",
                             Name = "Tableti",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Tableti"
                         },
                         new
                         {
                             Id = 66,
                             CategoryId = 8,
-                            DisplayName = "Ostalo - računala i mobiteli",
                             Keywords = "",
-                            Name = "Ostalo-racunala-mobiteli",
-                            ParentCategoryName = "Racunala-mobiteli"
+                            Name = "Ostalo - računala i mobiteli",
+                            ParentCategoryName = "Racunala-mobiteli",
+                            RouteName = "Ostalo-racunala-mobiteli"
                         },
                         new
                         {
                             Id = 67,
                             CategoryId = 9,
-                            DisplayName = "Konzole",
                             Keywords = "konzola",
                             Name = "Konzole",
-                            ParentCategoryName = "Konzole-igrice"
+                            ParentCategoryName = "Konzole-igrice",
+                            RouteName = "Konzole"
                         },
                         new
                         {
                             Id = 68,
                             CategoryId = 9,
-                            DisplayName = "Videoigre",
                             Keywords = "igrice,videoigrice",
                             Name = "Videoigre",
-                            ParentCategoryName = "Konzole-igrice"
+                            ParentCategoryName = "Konzole-igrice",
+                            RouteName = "Videoigre"
                         },
                         new
                         {
                             Id = 69,
                             CategoryId = 9,
-                            DisplayName = "Oprema i dodaci",
                             Keywords = "",
-                            Name = "Oprema-dodaci-konzole",
-                            ParentCategoryName = "Konzole-igrice"
+                            Name = "Oprema i dodaci",
+                            ParentCategoryName = "Konzole-igrice",
+                            RouteName = "Oprema-dodaci-konzole"
                         },
                         new
                         {
                             Id = 70,
                             CategoryId = 10,
-                            DisplayName = "Ženska odjeća",
                             Keywords = "Odjeca za zene,Odjeća za žene",
-                            Name = "Zenska-odjeca",
-                            ParentCategoryName = "Odjeca-obuca"
+                            Name = "Ženska odjeća",
+                            ParentCategoryName = "Odjeca-obuca",
+                            RouteName = "Zenska-odjeca"
                         },
                         new
                         {
                             Id = 71,
                             CategoryId = 10,
-                            DisplayName = "Ženska obuća",
                             Keywords = "Obuca za zene,",
-                            Name = "Zenska-obuca",
-                            ParentCategoryName = "Odjeca-obuca"
+                            Name = "Ženska obuća",
+                            ParentCategoryName = "Odjeca-obuca",
+                            RouteName = "Zenska-obuca"
                         },
                         new
                         {
                             Id = 72,
                             CategoryId = 10,
-                            DisplayName = "Muška odjeća",
                             Keywords = "",
-                            Name = "Muska-odjeca",
-                            ParentCategoryName = "Odjeca-obuca"
+                            Name = "Muška odjeća",
+                            ParentCategoryName = "Odjeca-obuca",
+                            RouteName = "Muska-odjeca"
                         },
                         new
                         {
                             Id = 73,
                             CategoryId = 10,
-                            DisplayName = "Muška obuća",
                             Keywords = "",
-                            Name = "Muska-obuca",
-                            ParentCategoryName = "Odjeca-obuca"
+                            Name = "Muška obuća",
+                            ParentCategoryName = "Odjeca-obuca",
+                            RouteName = "Muska-obuca"
                         },
                         new
                         {
                             Id = 74,
                             CategoryId = 10,
-                            DisplayName = "Dječja odjeća i obuća",
                             Keywords = "odjeca za djecu,odjeća za djecu",
-                            Name = "Djecja-odjeca-obuca",
-                            ParentCategoryName = "Odjeca-obuca"
+                            Name = "Dječja odjeća i obuća",
+                            ParentCategoryName = "Odjeca-obuca",
+                            RouteName = "Djecja-odjeca-obuca"
                         },
                         new
                         {
                             Id = 75,
                             CategoryId = 11,
-                            DisplayName = "Nakit",
                             Keywords = "",
                             Name = "Nakit",
-                            ParentCategoryName = "Nakit-satovi"
+                            ParentCategoryName = "Nakit-satovi",
+                            RouteName = "Nakit"
                         },
                         new
                         {
                             Id = 76,
                             CategoryId = 11,
-                            DisplayName = "Ručni satovi",
                             Keywords = "",
-                            Name = "Rucni-satovi",
-                            ParentCategoryName = "Nakit-satovi"
+                            Name = "Ručni satovi",
+                            ParentCategoryName = "Nakit-satovi",
+                            RouteName = "Rucni-satovi"
                         },
                         new
                         {
                             Id = 77,
                             CategoryId = 11,
-                            DisplayName = "Zidni satovi",
                             Keywords = "",
-                            Name = "Zidni-satovi",
-                            ParentCategoryName = "Nakit-satovi"
+                            Name = "Zidni satovi",
+                            ParentCategoryName = "Nakit-satovi",
+                            RouteName = "Zidni-satovi"
                         },
                         new
                         {
                             Id = 78,
                             CategoryId = 11,
-                            DisplayName = "Broševi i bedževi",
                             Keywords = "",
-                            Name = "Brosevi-bedzevi",
-                            ParentCategoryName = "Nakit-satovi"
+                            Name = "Broševi i bedževi",
+                            ParentCategoryName = "Nakit-satovi",
+                            RouteName = "Brosevi-bedzevi"
                         },
                         new
                         {
                             Id = 79,
                             CategoryId = 11,
-                            DisplayName = "Drago kamenje",
                             Keywords = "",
-                            Name = "Drago-kamenje",
-                            ParentCategoryName = "Nakit-satovi"
+                            Name = "Drago kamenje",
+                            ParentCategoryName = "Nakit-satovi",
+                            RouteName = "Drago-kamenje"
                         },
                         new
                         {
                             Id = 80,
                             CategoryId = 11,
-                            DisplayName = "Ostalo - nakit i satovi",
                             Keywords = "",
-                            Name = "Ostalo-nakit-satovi",
-                            ParentCategoryName = "Nakit-satovi"
+                            Name = "Ostalo - nakit i satovi",
+                            ParentCategoryName = "Nakit-satovi",
+                            RouteName = "Ostalo-nakit-satovi"
                         },
                         new
                         {
                             Id = 81,
                             CategoryId = 12,
-                            DisplayName = "Torbice",
                             Keywords = "torbe,neseseri,tašne,tasne,tasnice,tašnice",
                             Name = "Torbice",
-                            ParentCategoryName = "Modni-dodaci"
+                            ParentCategoryName = "Modni-dodaci",
+                            RouteName = "Torbice"
                         },
                         new
                         {
                             Id = 82,
                             CategoryId = 12,
-                            DisplayName = "Naočale",
                             Keywords = "",
-                            Name = "Naocale",
-                            ParentCategoryName = "Modni-dodaci"
+                            Name = "Naočale",
+                            ParentCategoryName = "Modni-dodaci",
+                            RouteName = "Naocale"
                         },
                         new
                         {
                             Id = 83,
                             CategoryId = 12,
-                            DisplayName = "Kaiševi",
                             Keywords = "remenovi,remeni,remenje",
-                            Name = "Kaisevi",
-                            ParentCategoryName = "Modni-dodaci"
+                            Name = "Kaiševi",
+                            ParentCategoryName = "Modni-dodaci",
+                            RouteName = "Kaisevi"
                         },
                         new
                         {
                             Id = 84,
                             CategoryId = 12,
-                            DisplayName = "Novčanici",
                             Keywords = "",
-                            Name = "Novcanici",
-                            ParentCategoryName = "Modni-dodaci"
+                            Name = "Novčanici",
+                            ParentCategoryName = "Modni-dodaci",
+                            RouteName = "Novcanici"
                         },
                         new
                         {
                             Id = 85,
                             CategoryId = 12,
-                            DisplayName = "Ostalo - modni dodaci",
                             Keywords = "",
-                            Name = "Ostalo-modni-dodaci",
-                            ParentCategoryName = "Modni-dodaci"
+                            Name = "Ostalo - modni dodaci",
+                            ParentCategoryName = "Modni-dodaci",
+                            RouteName = "Ostalo-modni-dodaci"
                         },
                         new
                         {
                             Id = 86,
                             CategoryId = 13,
-                            DisplayName = "Kozmetika i šminka",
                             Keywords = "maskare,maskara,puderi,ruzevi,ruževi,karmini",
-                            Name = "Kozmetika-sminka",
-                            ParentCategoryName = "Ljepota-zdravlje"
+                            Name = "Kozmetika i šminka",
+                            ParentCategoryName = "Ljepota-zdravlje",
+                            RouteName = "Kozmetika-sminka"
                         },
                         new
                         {
                             Id = 87,
                             CategoryId = 13,
-                            DisplayName = "Njega kose i tijela",
                             Keywords = "samponi,šamponi,ulja,gelovi",
-                            Name = "Njega-kose-tijela",
-                            ParentCategoryName = "Ljepota-zdravlje"
+                            Name = "Njega kose i tijela",
+                            ParentCategoryName = "Ljepota-zdravlje",
+                            RouteName = "Njega-kose-tijela"
                         },
                         new
                         {
                             Id = 88,
                             CategoryId = 13,
-                            DisplayName = "Parfemi",
                             Keywords = "mirisi",
                             Name = "Parfemi",
-                            ParentCategoryName = "Ljepota-zdravlje"
+                            ParentCategoryName = "Ljepota-zdravlje",
+                            RouteName = "Parfemi"
                         },
                         new
                         {
                             Id = 89,
                             CategoryId = 13,
-                            DisplayName = "Zdravlje",
                             Keywords = "",
                             Name = "Zdravlje",
-                            ParentCategoryName = "Ljepota-zdravlje"
+                            ParentCategoryName = "Ljepota-zdravlje",
+                            RouteName = "Zdravlje"
                         },
                         new
                         {
                             Id = 90,
                             CategoryId = 13,
-                            DisplayName = "Ostalo - ljepota i zdravlje",
                             Keywords = "",
-                            Name = "Ostalo-ljepota-zdravlje",
-                            ParentCategoryName = "Ljepota-zdravlje"
+                            Name = "Ostalo - ljepota i zdravlje",
+                            ParentCategoryName = "Ljepota-zdravlje",
+                            RouteName = "Ostalo-ljepota-zdravlje"
                         },
                         new
                         {
                             Id = 91,
                             CategoryId = 14,
-                            DisplayName = "Sportska odjeća i obuća - žene",
                             Keywords = "",
-                            Name = "Sportska-odjeca-obuca-zene",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Sportska odjeća i obuća - žene",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Sportska-odjeca-obuca-zene"
                         },
                         new
                         {
                             Id = 92,
                             CategoryId = 14,
-                            DisplayName = "Sportska odjeća i obuća - muški",
                             Keywords = "",
-                            Name = "Sportska-odjeca-obuca-muski",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Sportska odjeća i obuća - muški",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Sportska-odjeca-obuca-muski"
                         },
                         new
                         {
                             Id = 93,
                             CategoryId = 14,
-                            DisplayName = "Sportovi s loptom",
                             Keywords = "",
-                            Name = "Sportovi-s-loptom",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Sportovi s loptom",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Sportovi-s-loptom"
                         },
                         new
                         {
                             Id = 94,
                             CategoryId = 14,
-                            DisplayName = "Vodeni sportovi",
                             Keywords = "",
-                            Name = "Vodeni-sportovi",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Vodeni sportovi",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Vodeni-sportovi"
                         },
                         new
                         {
                             Id = 95,
                             CategoryId = 14,
-                            DisplayName = "Zimski sportovi",
                             Keywords = "",
-                            Name = "Zimski-sportovi",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Zimski sportovi",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Zimski-sportovi"
                         },
                         new
                         {
                             Id = 96,
                             CategoryId = 14,
-                            DisplayName = "Fitness i trening",
                             Keywords = "",
-                            Name = "Fitness-trening",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Fitness i trening",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Fitness-trening"
                         },
                         new
                         {
                             Id = 97,
                             CategoryId = 14,
-                            DisplayName = "Lov i ribolov",
                             Keywords = "",
-                            Name = "Lov-ribolov",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Lov i ribolov",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Lov-ribolov"
                         },
                         new
                         {
                             Id = 98,
                             CategoryId = 14,
-                            DisplayName = "Bicikli, role, romobili",
                             Keywords = "bicikla",
-                            Name = "Bicikli-role-romobili",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Bicikli, role, romobili",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Bicikli-role-romobili"
                         },
                         new
                         {
                             Id = 99,
                             CategoryId = 14,
-                            DisplayName = "Posteri",
                             Keywords = "",
                             Name = "Posteri",
-                            ParentCategoryName = "Sport-oprema"
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Posteri"
                         },
                         new
                         {
                             Id = 100,
                             CategoryId = 14,
-                            DisplayName = "Ostalo - sport",
                             Keywords = "",
-                            Name = "Ostalo-sport",
-                            ParentCategoryName = "Sport-oprema"
+                            Name = "Ostalo - sport",
+                            ParentCategoryName = "Sport-oprema",
+                            RouteName = "Ostalo-sport"
                         },
                         new
                         {
                             Id = 101,
                             CategoryId = 15,
-                            DisplayName = "Namještaj",
                             Keywords = "",
-                            Name = "Namjestaj",
-                            ParentCategoryName = "Dom-vrt"
+                            Name = "Namještaj",
+                            ParentCategoryName = "Dom-vrt",
+                            RouteName = "Namjestaj"
                         },
                         new
                         {
                             Id = 102,
                             CategoryId = 15,
-                            DisplayName = "Bijela tehnika",
                             Keywords = "",
-                            Name = "Bijela-tehnika",
-                            ParentCategoryName = "Dom-vrt"
+                            Name = "Bijela tehnika",
+                            ParentCategoryName = "Dom-vrt",
+                            RouteName = "Bijela-tehnika"
                         },
                         new
                         {
                             Id = 103,
                             CategoryId = 15,
-                            DisplayName = "Alati i pribor",
                             Keywords = "",
-                            Name = "Alati-pribor",
-                            ParentCategoryName = "Dom-vrt"
+                            Name = "Alati i pribor",
+                            ParentCategoryName = "Dom-vrt",
+                            RouteName = "Alati-pribor"
                         },
                         new
                         {
                             Id = 104,
                             CategoryId = 15,
-                            DisplayName = "Rasvjeta i sigurnost",
                             Keywords = "",
-                            Name = "Rasvjeta-sigurnost",
-                            ParentCategoryName = "Dom-vrt"
+                            Name = "Rasvjeta i sigurnost",
+                            ParentCategoryName = "Dom-vrt",
+                            RouteName = "Rasvjeta-sigurnost"
                         },
                         new
                         {
                             Id = 105,
                             CategoryId = 15,
-                            DisplayName = "Sve za čišćenje",
                             Keywords = "",
-                            Name = "Ciscenje",
-                            ParentCategoryName = "Dom-vrt"
+                            Name = "Sve za čišćenje",
+                            ParentCategoryName = "Dom-vrt",
+                            RouteName = "Ciscenje"
                         },
                         new
                         {
                             Id = 106,
                             CategoryId = 15,
-                            DisplayName = "Sve za vrt",
                             Keywords = "",
-                            Name = "Vrt",
-                            ParentCategoryName = "Dom-vrt"
+                            Name = "Sve za vrt",
+                            ParentCategoryName = "Dom-vrt",
+                            RouteName = "Vrt"
                         },
                         new
                         {
                             Id = 107,
                             CategoryId = 15,
-                            DisplayName = "Ostalo - dom",
                             Keywords = "",
-                            Name = "Ostalo-dom",
-                            ParentCategoryName = "Dom-vrt"
+                            Name = "Ostalo - dom",
+                            ParentCategoryName = "Dom-vrt",
+                            RouteName = "Ostalo-dom"
                         },
                         new
                         {
                             Id = 108,
                             CategoryId = 16,
-                            DisplayName = "Akcijske figurice",
                             Keywords = "akcione figurice",
-                            Name = "Akcijske-figurice",
-                            ParentCategoryName = "Igre-igracke"
+                            Name = "Akcijske figurice",
+                            ParentCategoryName = "Igre-igracke",
+                            RouteName = "Akcijske-figurice"
                         },
                         new
                         {
                             Id = 109,
                             CategoryId = 16,
-                            DisplayName = "Na baterije",
                             Keywords = "igračke na baterije,igracke na baterije",
-                            Name = "Na-baterije",
-                            ParentCategoryName = "Igre-igracke"
+                            Name = "Na baterije",
+                            ParentCategoryName = "Igre-igracke",
+                            RouteName = "Na-baterije"
                         },
                         new
                         {
                             Id = 110,
                             CategoryId = 16,
-                            DisplayName = "Plišane igračke",
                             Keywords = "plišanci,plisane igracke",
-                            Name = "Plisanci",
-                            ParentCategoryName = "Igre-igracke"
+                            Name = "Plišane igračke",
+                            ParentCategoryName = "Igre-igracke",
+                            RouteName = "Plisanci"
                         },
                         new
                         {
                             Id = 111,
                             CategoryId = 16,
-                            DisplayName = "Lego i slaganje",
                             Keywords = "lego kockice,lego kocke",
-                            Name = "Lego-slaganje",
-                            ParentCategoryName = "Igre-igracke"
+                            Name = "Lego i slaganje",
+                            ParentCategoryName = "Igre-igracke",
+                            RouteName = "Lego-slaganje"
                         },
                         new
                         {
                             Id = 112,
                             CategoryId = 16,
-                            DisplayName = "Društvene igre",
                             Keywords = "",
-                            Name = "Drustvene-igre",
-                            ParentCategoryName = "Igre-igracke"
+                            Name = "Društvene igre",
+                            ParentCategoryName = "Igre-igracke",
+                            RouteName = "Drustvene-igre"
                         },
                         new
                         {
                             Id = 113,
                             CategoryId = 16,
-                            DisplayName = "Ostalo - igre i igračke",
                             Keywords = "",
-                            Name = "Ostalo-igracke",
-                            ParentCategoryName = "Igre-igracke"
+                            Name = "Ostalo - igre i igračke",
+                            ParentCategoryName = "Igre-igracke",
+                            RouteName = "Ostalo-igracke"
                         },
                         new
                         {
                             Id = 114,
                             CategoryId = 17,
-                            DisplayName = "Školski pribor",
                             Keywords = "za školu,za skolu,skolski pribor",
-                            Name = "Skolski-pribor",
-                            ParentCategoryName = "Skola-posao"
+                            Name = "Školski pribor",
+                            ParentCategoryName = "Skola-posao",
+                            RouteName = "Skolski-pribor"
                         },
                         new
                         {
                             Id = 115,
                             CategoryId = 17,
-                            DisplayName = "Uredski pribor",
                             Keywords = "za posao,za ured",
-                            Name = "Uredski-pribor",
-                            ParentCategoryName = "Skola-posao"
+                            Name = "Uredski pribor",
+                            ParentCategoryName = "Skola-posao",
+                            RouteName = "Uredski-pribor"
                         },
                         new
                         {
                             Id = 116,
                             CategoryId = 18,
-                            DisplayName = "Vozila i oprema",
                             Keywords = "auta,auti,automobili,motori,quadovi,kombiji,dzipovi,džipovi",
-                            Name = "Vozila",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Vozila i oprema",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Vozila"
                         },
                         new
                         {
                             Id = 117,
                             CategoryId = 18,
-                            DisplayName = "Sve za bebe",
                             Keywords = "",
-                            Name = "Za-bebe",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Sve za bebe",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Za-bebe"
                         },
                         new
                         {
                             Id = 118,
                             CategoryId = 18,
-                            DisplayName = "Kućni ljubimci",
                             Keywords = "kucni,ljubimci,psi,mačke,macke",
-                            Name = "Kucni-ljubimci",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Kućni ljubimci",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Kucni-ljubimci"
                         },
                         new
                         {
                             Id = 119,
                             CategoryId = 18,
-                            DisplayName = "Maske",
                             Keywords = "",
                             Name = "Maske",
-                            ParentCategoryName = "Ostalo"
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Maske"
                         },
                         new
                         {
                             Id = 120,
                             CategoryId = 18,
-                            DisplayName = "Medicinska pomagala",
                             Keywords = "",
-                            Name = "Medicinska-pomagala",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Medicinska pomagala",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Medicinska-pomagala"
                         },
                         new
                         {
                             Id = 121,
                             CategoryId = 18,
-                            DisplayName = "Mjernoregulacijski instrumenti",
                             Keywords = "",
-                            Name = "Mjernoregulacijski-instrumenti",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Mjernoregulacijski instrumenti",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Mjernoregulacijski-instrumenti"
                         },
                         new
                         {
                             Id = 122,
                             CategoryId = 18,
-                            DisplayName = "Špijunska oprema",
                             Keywords = "",
-                            Name = "Spijunska-oprema",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Špijunska oprema",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Spijunska-oprema"
                         },
                         new
                         {
                             Id = 123,
                             CategoryId = 18,
-                            DisplayName = "Oprema za pušače",
                             Keywords = "",
-                            Name = "Oprema-pusaci",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Oprema za pušače",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Oprema-pusaci"
                         },
                         new
                         {
                             Id = 124,
                             CategoryId = 18,
-                            DisplayName = "Seksualna pomagala",
                             Keywords = "sex,porno",
-                            Name = "Seksualna-pomagala",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Seksualna pomagala",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Seksualna-pomagala"
                         },
                         new
                         {
                             Id = 125,
                             CategoryId = 18,
-                            DisplayName = "Ostalo - nesvrstano",
                             Keywords = "",
-                            Name = "Ostalo-nesvrstano",
-                            ParentCategoryName = "Ostalo"
+                            Name = "Ostalo - nesvrstano",
+                            ParentCategoryName = "Ostalo",
+                            RouteName = "Ostalo-nesvrstano"
                         });
                 });
 

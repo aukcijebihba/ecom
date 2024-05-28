@@ -7,14 +7,13 @@ namespace ecom.Models;
 public class SubCategory
 {
     public int Id { get; set; }
-    [Required]
-    //[Display(Name = "Naziv")]
+    [Display(Name = "Potkategorija")]
     public string? Name { get; set; }
+    [Display(Name = "Naziv")]
+    public string? RouteName { get; set; }
     public string? Keywords { get; set; }
     public int CategoryId { get; set; }
     public string? ParentCategoryName { get; set; }
-    [Display(Name = "Potkategorija")]
-    public string? DisplayName { get; set; }
     [JsonIgnore]
     public virtual Category? Category { get; set; }
     [JsonIgnore]
