@@ -22,7 +22,7 @@
 <style>
     .card{
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        transition: 0.3s;
+        transition: 0.1s;
     }
     .card:hover{
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -54,7 +54,7 @@
     @foreach(var product in Model)
     {
         <div class="card col-md-5" style="margin: 10px 15px 15px 15px; padding-bottom: 15px; display: flex;">
-            <a asp-controller="Products" asp-action="Details" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-route-id="@product.Id">@product.Name</a>
+            <a asp-controller="Products" asp-action="Details" style="width: 100%; height: 60px; object-fit: cover; object-position: 50% 10%;" asp-route-id="@product.ProdGuid">@product.Name</a>
         </div>
     }
 </div>

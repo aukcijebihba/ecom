@@ -51,4 +51,6 @@ public class Writer : IdentityUser<int> //password policy, check if username exi
             } 
         }
         public List<int>? FollowedProductIds { get; set; }
+        private List<Product>? _products;// { get; set; } 
+        public List<Product> Products { get{ return _products ?? (_products = new List<Product>()); } set{ _products = value;} }
 }

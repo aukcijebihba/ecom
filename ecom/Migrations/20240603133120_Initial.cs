@@ -235,14 +235,15 @@ namespace ecom.Migrations
                     StartingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CurrentPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SellerId = table.Column<int>(type: "int", nullable: false),
+                    WriterId = table.Column<int>(type: "int", nullable: false),
                     BuyerId = table.Column<int>(type: "int", nullable: false),
+                    ProdGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OfferCount = table.Column<int>(type: "int", nullable: false),
                     AuctionStart = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AuctionEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     SubCategoryId = table.Column<int>(type: "int", nullable: false),
-                    ImagesUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImagesUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsSold = table.Column<bool>(type: "bit", nullable: false),
                     TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsNew = table.Column<bool>(type: "bit", nullable: false),
@@ -259,6 +260,12 @@ namespace ecom.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_AspNetUsers_WriterId",
+                        column: x => x.WriterId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -478,6 +485,11 @@ namespace ecom.Migrations
                 name: "IX_Products_SubCategoryId",
                 table: "Products",
                 column: "SubCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_WriterId",
+                table: "Products",
+                column: "WriterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategories_CategoryId",

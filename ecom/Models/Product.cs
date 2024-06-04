@@ -1,45 +1,58 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Newtonsoft.Json.Serialization;
 namespace ecom.Models;
 
 public class Product
 {
     public int Id { get; set; } 
     [Display(Name = "Naziv")]
-    [Required]
+    [Required(ErrorMessage = "Polje 'Naziv' je obvezno")]
     public required string Name { get; set; }
-    [Required]
+    [Required(ErrorMessage = "Polje 'Početna cijena' je obvezno")]
     [Display(Name = "Početna cijena")]
     public decimal StartingPrice { get; set; }
     [Required]
     [Display(Name = "Trenutna cijena")]
     public decimal CurrentPrice { get; set; }
-    [Required]
-    [Display(Name = "Detaljno")]
+    [Required(ErrorMessage = "Polje 'Detalji' je obvezno")]
+    [Display(Name = "Detalji")]
     public required string Description { get; set; }
     [Required]
     [Display(Name = "Prodavač")]
-    public int SellerId { get; set; }
+    public int WriterId { get; set; }
     [Required]
     [Display(Name = "Kupac")]
     public int BuyerId { get; set; }
     [Required]
+    public Guid ProdGuid { get; set; }
+    private Writer? _writer;
+    public Writer Writer { get {return _writer ??= new Writer();} set { _writer = value;}}
+    [Required]
     public int OfferCount { get; set; }
-    [Required]
+    [Required(ErrorMessage = "Polje 'Početak aukcije' je obvezno")]
+    [Display(Name = "Početak aukcije")]
     public DateTime AuctionStart { get; set; } // aktivni su svi predmeti gdje je trenutno vrijeme između auction start i end
-    [Required]
+    [Required(ErrorMessage = "Polje 'Kraj aukcije' je obvezno")]
+    [Display(Name = "Kraj aukcije")]
     public DateTime AuctionEnd { get; set; }
     [Display(Name = "Kategorija")]
-    [Required]
+    [Required(ErrorMessage = "Polje 'Kategorija' je obvezno")]
     public int CategoryId { get; set; }
     private Category? _category;
+    [Required(ErrorMessage = "Polje 'Kategorija' je obvezno")]
+    [Display(Name = "Kategorija")]
     public Category Category { get  { return _category ??= new Category();} set { _category = value;}}
     private SubCategory? _subCategory;
-    [Required]
+    [Required(ErrorMessage = "Polje 'Potkategorija' je obvezno")]
+    [Display(Name = "Potkategorija")]
     public int SubCategoryId { get; set;}
+    [Required(ErrorMessage = "Polje 'Potkategorija' je obvezno")]
+    [Display(Name = "Potkategorija")]
     public SubCategory SubCategory { get  { return _subCategory ??= new SubCategory();} set { _subCategory = value;}}
-    [Required]
-    public required string ImagesUrl { get; set; }
+    public string? ImagesUrl { get; set; }
     [Required]
     public bool IsSold { get; set; } 
     public bool HasEnded 

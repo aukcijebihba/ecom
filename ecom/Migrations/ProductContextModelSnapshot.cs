@@ -391,7 +391,6 @@ namespace ecom.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ImagesUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAdvertised")
@@ -422,8 +421,8 @@ namespace ecom.Migrations
                     b.Property<int>("OfferCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("SellerId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ProdGuid")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("StartingPrice")
                         .HasColumnType("decimal(18,2)");
@@ -440,11 +439,16 @@ namespace ecom.Migrations
                     b.Property<int>("ViewCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("WriterId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("SubCategoryId");
+
+                    b.HasIndex("WriterId");
 
                     b.ToTable("Products");
                 });
@@ -1769,9 +1773,17 @@ namespace ecom.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("ecom.Models.Writer", "Writer")
+                        .WithMany("Products")
+                        .HasForeignKey("WriterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
 
                     b.Navigation("SubCategory");
+
+                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("ecom.Models.SubCategory", b =>
@@ -1793,6 +1805,11 @@ namespace ecom.Migrations
                 });
 
             modelBuilder.Entity("ecom.Models.SubCategory", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("ecom.Models.Writer", b =>
                 {
                     b.Navigation("Products");
                 });

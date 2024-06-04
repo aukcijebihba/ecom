@@ -16,7 +16,8 @@ public static class SeedData
 
         var writers = new Writer[]
         {
-            new Writer{FirstName="Testko",LastName="Testković",DOB = new DateTime(2000, 1, 1), UserName = "milancinija@yahoo.com", Email = "milancinija@yahoo.com"} 
+            new Writer{FirstName="Testko",LastName="Testković",DOB = new DateTime(2000, 1, 1), UserName = "milancinija@yahoo.com", Email = "milancinija@yahoo.com"},
+            new Writer{FirstName="Marija",LastName="Dotlo",DOB = new DateTime(2000, 1, 1), UserName = "marija.djotlo97@gmail.com", Email = "marija.djotlo97@gmail.com"}  
         };
 
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole<int>>>();
@@ -52,9 +53,9 @@ public static class SeedData
 
         var products = new Product[]
         {
-            new Product{Name="Kol / Militarija test 1",Description="",ImagesUrl="",Category=categorya,SubCategory=subcategorya,AuctionStart=DateTime.Today,AuctionEnd=new DateTime(2024, 05, 31)},
-            new Product{Name="Kol / Filatelija test 1",Description="",ImagesUrl="",Category=categorya,SubCategory=subcategoryb,AuctionStart=DateTime.Today,AuctionEnd=new DateTime(2024, 05, 31)},
-            new Product{Name="Num / Novcanice test 1",Description="",ImagesUrl="",Category=categoryb,SubCategory=subcategoryc,AuctionStart=DateTime.Today,AuctionEnd=new DateTime(2024, 05, 31)}
+            new Product{Name="Kol / Militarija test 1",WriterId=1,Description="",ImagesUrl="",Category=categorya,SubCategory=subcategorya,AuctionStart=DateTime.Today,AuctionEnd=new DateTime(2024, 05, 31)},
+            new Product{Name="Kol / Filatelija test 1",WriterId=1,Description="",ImagesUrl="",Category=categorya,SubCategory=subcategoryb,AuctionStart=DateTime.Today,AuctionEnd=new DateTime(2024, 05, 31)},
+            new Product{Name="Num / Novcanice test 1",WriterId=1,Description="",ImagesUrl="",Category=categoryb,SubCategory=subcategoryc,AuctionStart=DateTime.Today,AuctionEnd=new DateTime(2024, 05, 31)}
         };
 
         foreach(Product p in products)
@@ -82,7 +83,7 @@ public static class SeedData
     private static async Task EnsureAdminAsync(UserManager<Writer> userManager, string userPw)
     {
         var testAdmin = await userManager.Users
-            .Where(x => x.UserName == "stecajnikadmin")
+            .Where(x => x.UserName == "aukcije-bih@outlook.com")
             .SingleOrDefaultAsync();
 
         if(testAdmin != null) return;
@@ -91,7 +92,7 @@ public static class SeedData
         {
             UserName = "aukcije-bih@outlook.com",
             Email = "aukcije-bih@outlook.com",  
-            LastName = "Stecajnik",
+            LastName = "Zukanović",
             FirstName = "Admin",
             IsAdmin = true,
             DOB = new DateTime(1990, 1, 1) 

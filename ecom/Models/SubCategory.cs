@@ -9,7 +9,6 @@ public class SubCategory
     public int Id { get; set; }
     [Display(Name = "Potkategorija")]
     public string? Name { get; set; }
-    [Display(Name = "Naziv")]
     public string? RouteName { get; set; }
     public string? Keywords { get; set; }
     public int CategoryId { get; set; }
