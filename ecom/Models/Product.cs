@@ -3,21 +3,26 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Newtonsoft.Json.Serialization;
+using System.Globalization;
 namespace ecom.Models;
 
 public class Product
 {
     public int Id { get; set; } 
     [Display(Name = "Naziv")]
-    [Required(ErrorMessage = "Polje 'Naziv' je obvezno")]
+    [StringLength(100, ErrorMessage="Molimo upišite između 6 i 100 znakova.", MinimumLength = 6)]
+    [Required(ErrorMessage = "Polje 'Naziv' je obvezno.")]
     public required string Name { get; set; }
-    [Required(ErrorMessage = "Polje 'Početna cijena' je obvezno")]
+    [Required(ErrorMessage = "Polje 'Početna cijena' je obvezno.")]
     [Display(Name = "Početna cijena")]
+    [Range(typeof(decimal), "1.00", "100000.00", ErrorMessage = "Upišite cijenu između 1.00 KM i 100000.00 KM.")]
     public decimal StartingPrice { get; set; }
     [Required]
     [Display(Name = "Trenutna cijena")]
+    //[Range(1.00, 100000.00)]
     public decimal CurrentPrice { get; set; }
-    [Required(ErrorMessage = "Polje 'Detalji' je obvezno")]
+    [Required(ErrorMessage = "Polje 'Detalji' je obvezno.")]
+    [StringLength(2000, ErrorMessage="Molimo upišite između 10 i 2000 znakova.", MinimumLength = 10)]
     [Display(Name = "Detalji")]
     public required string Description { get; set; }
     [Required]
@@ -32,24 +37,26 @@ public class Product
     public Writer Writer { get {return _writer ??= new Writer();} set { _writer = value;}}
     [Required]
     public int OfferCount { get; set; }
-    [Required(ErrorMessage = "Polje 'Početak aukcije' je obvezno")]
-    [Display(Name = "Početak aukcije")]
+    [Required(ErrorMessage = "Polje 'Početak aukcije' je obvezno.")]
+    [Display(Name = "Početak aukcije")] 
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy. HH:mm:ss}")]
     public DateTime AuctionStart { get; set; } // aktivni su svi predmeti gdje je trenutno vrijeme između auction start i end
-    [Required(ErrorMessage = "Polje 'Kraj aukcije' je obvezno")]
+    [Required(ErrorMessage = "Polje 'Kraj aukcije' je obvezno.")]
     [Display(Name = "Kraj aukcije")]
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy. HH:mm:ss}")]
     public DateTime AuctionEnd { get; set; }
     [Display(Name = "Kategorija")]
-    [Required(ErrorMessage = "Polje 'Kategorija' je obvezno")]
+    [Required(ErrorMessage = "Polje 'Kategorija' je obvezno.")]
     public int CategoryId { get; set; }
     private Category? _category;
-    [Required(ErrorMessage = "Polje 'Kategorija' je obvezno")]
+    [Required(ErrorMessage = "Polje 'Kategorija' je obvezno.")]
     [Display(Name = "Kategorija")]
     public Category Category { get  { return _category ??= new Category();} set { _category = value;}}
     private SubCategory? _subCategory;
-    [Required(ErrorMessage = "Polje 'Potkategorija' je obvezno")]
+    [Required(ErrorMessage = "Polje 'Potkategorija' je obvezno.")]
     [Display(Name = "Potkategorija")]
     public int SubCategoryId { get; set;}
-    [Required(ErrorMessage = "Polje 'Potkategorija' je obvezno")]
+    [Required(ErrorMessage = "Polje 'Potkategorija' je obvezno.")]
     [Display(Name = "Potkategorija")]
     public SubCategory SubCategory { get  { return _subCategory ??= new SubCategory();} set { _subCategory = value;}}
     public string? ImagesUrl { get; set; }

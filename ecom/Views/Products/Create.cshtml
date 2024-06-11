@@ -44,7 +44,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" minlength="6" />
+                <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -59,17 +59,17 @@
             </div>
             <div class="form-group col-md-12" style="z-index: 0;">
                 <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" id="mytextarea" class="mytextarea" style="width: 100%;" rows="20" minlength="10"></textarea> 
+                <textarea asp-for="Description" id="mytextarea" class="mytextarea" style="width: 100%;" rows="20"></textarea> 
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AuctionStart" class="control-label"></label>
-                <input asp-for="AuctionStart" class="form-control" min="@DateTime.Today" />
+                <input asp-for="AuctionStart" class="form-control" min="@DateTime.Today" required/>
                 <span asp-validation-for="AuctionStart" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AuctionEnd" class="control-label"></label>
-                <input asp-for="AuctionEnd" class="form-control" min="@DateTime.Today" />
+                <input asp-for="AuctionEnd" class="form-control" min="@DateTime.Today" required/>
                 <span asp-validation-for="AuctionEnd" class="text-danger"></span>
             </div>
             <div class="form-group">

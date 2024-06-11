@@ -12,7 +12,7 @@ using ecom.Data;
 namespace ecom.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20240603133120_Initial")]
+    [Migration("20240609193435_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -385,7 +385,8 @@ namespace ecom.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<int>("FollowerCount")
                         .HasColumnType("int");
@@ -419,7 +420,8 @@ namespace ecom.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("OfferCount")
                         .HasColumnType("int");

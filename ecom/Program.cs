@@ -15,7 +15,8 @@ builder.Services.AddIdentity<Writer, IdentityRole<int>>(options => options.Store
                 .AddDefaultUI()
                 .AddDefaultTokenProviders();
 
-builder.Services.AddControllersWithViews(); 
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
